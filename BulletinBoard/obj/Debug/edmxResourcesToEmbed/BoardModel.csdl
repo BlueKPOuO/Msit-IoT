@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Buliding_ManagementModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BulletinBoard">
+    <Key>
+      <PropertyRef Name="annID" />
+    </Key>
+    <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="annID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="annGrade" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="annClass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="annDate" Type="DateTime" Precision="3" />
+    <Property Name="annTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="annContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="annAnnex" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="annFilename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StaffDataTable" Relationship="Self.FK_BulletinBoard_StaffDataTable" FromRole="BulletinBoard" ToRole="StaffDataTable" />
+  </EntityType>
+  <EntityType Name="StaffDataTable">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StaffName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+    <Property Name="StaffPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="StaffLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OnWork" Type="Boolean" />
+    <NavigationProperty Name="BulletinBoards" Relationship="Self.FK_BulletinBoard_StaffDataTable" FromRole="StaffDataTable" ToRole="BulletinBoard" />
+  </EntityType>
+  <Association Name="FK_BulletinBoard_StaffDataTable">
+    <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="1" />
+    <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StaffDataTable">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="BulletinBoard">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Buliding_ManagementEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BulletinBoards" EntityType="Self.BulletinBoard" />
+    <EntitySet Name="StaffDataTables" EntityType="Self.StaffDataTable" />
+    <AssociationSet Name="FK_BulletinBoard_StaffDataTable" Association="Self.FK_BulletinBoard_StaffDataTable">
+      <End Role="StaffDataTable" EntitySet="StaffDataTables" />
+      <End Role="BulletinBoard" EntitySet="BulletinBoards" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,1497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Buliding_ManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BulletinBoard">
+          <Key>
+            <PropertyRef Name="annID" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+          <Property Name="annID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="annGrade" Type="nvarchar" MaxLength="10" />
+          <Property Name="annClass" Type="nvarchar" MaxLength="10" />
+          <Property Name="annDate" Type="datetime" />
+          <Property Name="annTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="annContent" Type="nvarchar(max)" />
+          <Property Name="annAnnex" Type="binary" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="EquipFix">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="EquipmentID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportDate" Type="date" Nullable="false" />
+          <Property Name="RepairedDate" Type="date" />
+          <Property Name="Repaired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EquipmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Buydate" Type="datetime" Nullable="false" />
+          <Property Name="UseYear" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipReservation">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ReservEquipNum" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EquipmentID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ReservationDate" Type="datetime" Nullable="false" />
+          <Property Name="ResidentID" Type="int" Nullable="false" />
+          <Property Name="ReturnDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HolderDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+            <PropertyRef Name="HolderName" />
+            <PropertyRef Name="HolderIDNumber" />
+          </Key>
+          <Property Name="ResidentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HolderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HolderIDNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="HolderAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HolderPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Holder LINE ID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HTDataTable">
+          <Key>
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Temperature" Type="float" Nullable="false" />
+          <Property Name="Humidity" Type="float" Nullable="false" />
+          <Property Name="SensorID" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HumiTemperSenser">
+          <Key>
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="SensorID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PackageCompany">
+          <Key>
+            <PropertyRef Name="PackageCompanyID" />
+          </Key>
+          <Property Name="PackageCompanyID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PackageTable">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackageArrivalDate" Type="date" />
+          <Property Name="PackageCompanyID" Type="char" MaxLength="10" />
+          <Property Name="Receiver" Type="nchar" MaxLength="10" />
+          <Property Name="ReceiverID" Type="int" />
+          <Property Name="Sign" Type="bit" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ParkingManagement">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ParkingNum" Type="int" Nullable="false" />
+          <Property Name="LicensePlate" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="EnterTime" Type="datetime" Nullable="false" />
+          <Property Name="QuitTime" Type="datetime" />
+          <Property Name="ParkingFee" Type="int" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="16" />
+          <Property Name="ContactPhone" Type="char" MaxLength="10" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublicSpace">
+          <Key>
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="RentTime" />
+          </Key>
+          <Property Name="ResidentID" Type="int" Nullable="false" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="RentTime" Type="datetime" Nullable="false" />
+          <Property Name="ReturnTime" Type="datetime" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ResidentDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="int" Nullable="false" />
+          <Property Name="ResidentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResidentPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ResidentIDNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CommunityAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidentLINE ID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReturnPackage">
+          <Key>
+            <PropertyRef Name="ReturnDataID" />
+          </Key>
+          <Property Name="ReturnDataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReturnArrivalDate" Type="date" />
+          <Property Name="ReturnCompanyID" Type="char" MaxLength="10" />
+          <Property Name="Returnee" Type="nchar" MaxLength="10" />
+          <Property Name="ReturneeID" Type="int" />
+          <Property Name="Sign" Type="bit" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SensorTable">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="SensorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShiftTable">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="0" />
+          <Property Name="EndTime" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="SmokeSenser">
+          <Key>
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="SensorID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="place" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryID" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="SmokeSenserData">
+          <Key>
+            <PropertyRef Name="SensorID" />
+            <PropertyRef Name="Detectiondate" />
+          </Key>
+          <Property Name="SensorID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Detectiondate" Type="datetime" Nullable="false" />
+          <Property Name="Smokevalue" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StaffDataTable">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StaffName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="LeaveDate" Type="date" />
+          <Property Name="StaffPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="StaffLINE ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="OnWork" Type="bit" Nullable="false" />
+          <Property Name="ShiftID" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Password" Type="varbinary(max)" Nullable="false" />
+          <Property Name="salted" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'Buliding_Management.dbo.StaffDataWorkTime' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="StaffDataWorkTime">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="StaffName" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="OnWork" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StaffName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="LeaveDate" Type="date" />
+          <Property Name="StaffPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="StaffLINE ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="OnWork" Type="bit" Nullable="false" />
+          <Property Name="ShiftID" Type="nvarchar" MaxLength="5" />
+          <Property Name="WorkTime" Type="nvarchar" MaxLength="103" />
+        </EntityType>
+        <Association Name="FK_BulletinBoard_ShaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipFix_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipFix" Type="Self.EquipFix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipFix">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipReservation" Type="Self.EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="EquipReservation" Type="Self.EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HolderDataTable_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="HolderDataTable" Type="Self.HolderDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="HolderDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HTDataTable_HumiTemperSenser">
+          <End Role="HumiTemperSenser" Type="Self.HumiTemperSenser" Multiplicity="1" />
+          <End Role="HTDataTable" Type="Self.HTDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumiTemperSenser">
+              <PropertyRef Name="SensorID" />
+            </Principal>
+            <Dependent Role="HTDataTable">
+              <PropertyRef Name="SensorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumiTemperSenser_SensorTable">
+          <End Role="SensorTable" Type="Self.SensorTable" Multiplicity="1" />
+          <End Role="HumiTemperSenser" Type="Self.HumiTemperSenser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SensorTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="HumiTemperSenser">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="0..1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="PackageCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="0..1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_StaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParkingManagement_ShaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="1" />
+          <End Role="ParkingManagement" Type="Self.ParkingManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="ParkingManagement">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PublicSpace_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="PublicSpace" Type="Self.PublicSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PublicSpace">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PublicSpace_ShaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="1" />
+          <End Role="PublicSpace" Type="Self.PublicSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PublicSpace">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnCompany_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="0..1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturnCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnCompany_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="0..1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SmokeSenser_SensorTable">
+          <End Role="SensorTable" Type="Self.SensorTable" Multiplicity="0..1" />
+          <End Role="SmokeSenser" Type="Self.SmokeSenser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SensorTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SmokeSenser">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffDataTable_ShiftTable">
+          <End Role="ShiftTable" Type="Self.ShiftTable" Multiplicity="1" />
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShiftTable">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="StaffDataTable">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAccount_ShaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="1" />
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_煙霧偵測器數值_煙霧偵測器">
+          <End Role="SmokeSenser" Type="Self.SmokeSenser" Multiplicity="1" />
+          <End Role="SmokeSenserData" Type="Self.SmokeSenserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmokeSenser">
+              <PropertyRef Name="SensorID" />
+            </Principal>
+            <Dependent Role="SmokeSenserData">
+              <PropertyRef Name="SensorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="InOut" />
+          <Parameter Name="StaffID" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="salted" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetSalted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="salted" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="IsNameExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="Buliding_ManagementModelStoreContainer">
+          <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipFix" EntityType="Self.EquipFix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipReservation" EntityType="Self.EquipReservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageTable" EntityType="Self.PackageTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParkingManagement" EntityType="Self.ParkingManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublicSpace" EntityType="Self.PublicSpace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResidentDataTable" EntityType="Self.ResidentDataTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnPackage" EntityType="Self.ReturnPackage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SensorTable" EntityType="Self.SensorTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SmokeSenser" EntityType="Self.SmokeSenser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SmokeSenserData" EntityType="Self.SmokeSenserData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffDataWorkTime" EntityType="Self.StaffDataWorkTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [StaffDataWorkTime].[StaffID] AS [StaffID], 
+    [StaffDataWorkTime].[StaffName] AS [StaffName], 
+    [StaffDataWorkTime].[EntryDate] AS [EntryDate], 
+    [StaffDataWorkTime].[LeaveDate] AS [LeaveDate], 
+    [StaffDataWorkTime].[StaffPhone] AS [StaffPhone], 
+    [StaffDataWorkTime].[StaffLINE ID] AS [StaffLINE ID], 
+    [StaffDataWorkTime].[OnWork] AS [OnWork], 
+    [StaffDataWorkTime].[ShiftID] AS [ShiftID], 
+    [StaffDataWorkTime].[WorkTime] AS [WorkTime]
+    FROM [dbo].[StaffDataWorkTime] AS [StaffDataWorkTime]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BulletinBoard_ShaffDataTable" Association="Self.FK_BulletinBoard_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipFix_Equipment" Association="Self.FK_EquipFix_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipFix" EntitySet="EquipFix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_Equipment" Association="Self.FK_EquipReservation_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_ResidentDataTable" Association="Self.FK_EquipReservation_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HolderDataTable_ResidentDataTable" Association="Self.FK_HolderDataTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="HolderDataTable" EntitySet="HolderDataTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HTDataTable_HumiTemperSenser" Association="Self.FK_HTDataTable_HumiTemperSenser">
+            <End Role="HumiTemperSenser" EntitySet="HumiTemperSenser" />
+            <End Role="HTDataTable" EntitySet="HTDataTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumiTemperSenser_SensorTable" Association="Self.FK_HumiTemperSenser_SensorTable">
+            <End Role="SensorTable" EntitySet="SensorTable" />
+            <End Role="HumiTemperSenser" EntitySet="HumiTemperSenser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_PackageCompany" Association="Self.FK_PackageTable_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_ResidentDataTable" Association="Self.FK_PackageTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_StaffDataTable" Association="Self.FK_PackageTable_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParkingManagement_ShaffDataTable" Association="Self.FK_ParkingManagement_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="ParkingManagement" EntitySet="ParkingManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PublicSpace_ResidentDataTable" Association="Self.FK_PublicSpace_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PublicSpace" EntitySet="PublicSpace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PublicSpace_ShaffDataTable" Association="Self.FK_PublicSpace_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PublicSpace" EntitySet="PublicSpace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnCompany_PackageCompany" Association="Self.FK_ReturnCompany_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnCompany_ResidentDataTable" Association="Self.FK_ReturnCompany_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SmokeSenser_SensorTable" Association="Self.FK_SmokeSenser_SensorTable">
+            <End Role="SensorTable" EntitySet="SensorTable" />
+            <End Role="SmokeSenser" EntitySet="SmokeSenser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffDataTable_ShiftTable" Association="Self.FK_StaffDataTable_ShiftTable">
+            <End Role="ShiftTable" EntitySet="ShiftTable" />
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAccount_ShaffDataTable" Association="Self.FK_UserAccount_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="UserAccount" EntitySet="UserAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_煙霧偵測器數值_煙霧偵測器" Association="Self.FK_煙霧偵測器數值_煙霧偵測器">
+            <End Role="SmokeSenser" EntitySet="SmokeSenser" />
+            <End Role="SmokeSenserData" EntitySet="SmokeSenserData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Buliding_ManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PublicSpace">
+          <Key>
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="RentTime" />
+          </Key>
+          <Property Name="ResidentID" Type="Int32" Nullable="false" />
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RentTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" FromRole="PublicSpace" ToRole="ResidentDataTable" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" FromRole="PublicSpace" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="salted" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_UserAccount_ShaffDataTable" FromRole="UserAccount" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityContainer Name="Buliding_ManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PublicSpace" EntityType="Self.PublicSpace" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" />
+          <FunctionImport Name="CreateUser">
+            <Parameter Name="ID" Mode="InOut" Type="Int32" />
+            <Parameter Name="StaffID" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+            <Parameter Name="salted" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSalted">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="salted" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IsNameExists">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Login">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <EntitySet Name="BulletinBoard" EntityType="Buliding_ManagementModel.BulletinBoard" />
+          <EntitySet Name="EquipFix" EntityType="Buliding_ManagementModel.EquipFix" />
+          <EntitySet Name="Equipment" EntityType="Buliding_ManagementModel.Equipment" />
+          <EntitySet Name="EquipReservation" EntityType="Buliding_ManagementModel.EquipReservation" />
+          <EntitySet Name="HolderDataTable" EntityType="Buliding_ManagementModel.HolderDataTable" />
+          <EntitySet Name="HTDataTable" EntityType="Buliding_ManagementModel.HTDataTable" />
+          <EntitySet Name="HumiTemperSenser" EntityType="Buliding_ManagementModel.HumiTemperSenser" />
+          <EntitySet Name="PackageCompany" EntityType="Buliding_ManagementModel.PackageCompany" />
+          <EntitySet Name="PackageTable" EntityType="Buliding_ManagementModel.PackageTable" />
+          <EntitySet Name="ResidentDataTable" EntityType="Buliding_ManagementModel.ResidentDataTable" />
+          <EntitySet Name="ReturnPackage" EntityType="Buliding_ManagementModel.ReturnPackage" />
+          <EntitySet Name="SensorTable" EntityType="Buliding_ManagementModel.SensorTable" />
+          <EntitySet Name="SmokeSenser" EntityType="Buliding_ManagementModel.SmokeSenser" />
+          <EntitySet Name="SmokeSenserData" EntityType="Buliding_ManagementModel.SmokeSenserData" />
+          <EntitySet Name="sysdiagrams" EntityType="Buliding_ManagementModel.sysdiagrams" />
+          <AssociationSet Name="FK_EquipFix_Equipment" Association="Buliding_ManagementModel.FK_EquipFix_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipFix" EntitySet="EquipFix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_Equipment" Association="Buliding_ManagementModel.FK_EquipReservation_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_ResidentDataTable" Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HolderDataTable_ResidentDataTable" Association="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="HolderDataTable" EntitySet="HolderDataTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HTDataTable_HumiTemperSenser" Association="Buliding_ManagementModel.FK_HTDataTable_HumiTemperSenser">
+            <End Role="HumiTemperSenser" EntitySet="HumiTemperSenser" />
+            <End Role="HTDataTable" EntitySet="HTDataTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HumiTemperSenser_SensorTable" Association="Buliding_ManagementModel.FK_HumiTemperSenser_SensorTable">
+            <End Role="SensorTable" EntitySet="SensorTable" />
+            <End Role="HumiTemperSenser" EntitySet="HumiTemperSenser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_PackageCompany" Association="Buliding_ManagementModel.FK_PackageTable_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnCompany_PackageCompany" Association="Buliding_ManagementModel.FK_ReturnCompany_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_ResidentDataTable" Association="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PublicSpace_ResidentDataTable" Association="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PublicSpace" EntitySet="PublicSpace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnCompany_ResidentDataTable" Association="Buliding_ManagementModel.FK_ReturnCompany_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SmokeSenser_SensorTable" Association="Buliding_ManagementModel.FK_SmokeSenser_SensorTable">
+            <End Role="SensorTable" EntitySet="SensorTable" />
+            <End Role="SmokeSenser" EntitySet="SmokeSenser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_煙霧偵測器數值_煙霧偵測器" Association="Buliding_ManagementModel.FK_煙霧偵測器數值_煙霧偵測器">
+            <End Role="SmokeSenser" EntitySet="SmokeSenser" />
+            <End Role="SmokeSenserData" EntitySet="SmokeSenserData" />
+          </AssociationSet>
+          <EntitySet Name="StaffDataTable" EntityType="Buliding_ManagementModel.StaffDataTable" />
+          <AssociationSet Name="FK_BulletinBoard_ShaffDataTable" Association="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_StaffDataTable" Association="Buliding_ManagementModel.FK_PackageTable_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PublicSpace_ShaffDataTable" Association="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PublicSpace" EntitySet="PublicSpace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAccount_ShaffDataTable" Association="Buliding_ManagementModel.FK_UserAccount_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="UserAccount" EntitySet="UserAccount" />
+          </AssociationSet>
+          <EntitySet Name="StaffDataWorkTime" EntityType="Buliding_ManagementModel.StaffDataWorkTime" />
+          <EntitySet Name="ShiftTable" EntityType="Buliding_ManagementModel.ShiftTable" />
+          <AssociationSet Name="FK_StaffDataTable_ShiftTable" Association="Buliding_ManagementModel.FK_StaffDataTable_ShiftTable">
+            <End Role="ShiftTable" EntitySet="ShiftTable" />
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+          </AssociationSet>
+          <EntitySet Name="ParkingManagement" EntityType="Buliding_ManagementModel.ParkingManagement" />
+          <AssociationSet Name="FK_ParkingManagement_ShaffDataTable" Association="Buliding_ManagementModel.FK_ParkingManagement_ShaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="ParkingManagement" EntitySet="ParkingManagement" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BulletinBoard">
+          <Key>
+            <PropertyRef Name="annID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="annID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="annGrade" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="annClass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="annDate" Type="DateTime" Precision="3" />
+          <Property Name="annTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="annContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="annAnnex" Type="Binary" MaxLength="8000" FixedLength="true" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable" FromRole="BulletinBoard" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityType Name="EquipFix">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RepairedDate" Type="DateTime" Precision="0" />
+          <Property Name="Repaired" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Buliding_ManagementModel.FK_EquipFix_Equipment" FromRole="EquipFix" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Buydate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UseYear" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EquipFix" Relationship="Buliding_ManagementModel.FK_EquipFix_Equipment" FromRole="Equipment" ToRole="EquipFix" />
+          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="Equipment" ToRole="EquipReservation" />
+        </EntityType>
+        <EntityType Name="EquipReservation">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ReservEquipNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResidentID" Type="Int32" Nullable="false" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Equipment" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="EquipReservation" ToRole="Equipment" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable" FromRole="EquipReservation" ToRole="ResidentDataTable" />
+        </EntityType>
+        <EntityType Name="HolderDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+            <PropertyRef Name="HolderName" />
+            <PropertyRef Name="HolderIDNumber" />
+          </Key>
+          <Property Name="ResidentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HolderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HolderIDNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="HolderAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HolderPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Holder_LINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable" FromRole="HolderDataTable" ToRole="ResidentDataTable" />
+        </EntityType>
+        <EntityType Name="HTDataTable">
+          <Key>
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Temperature" Type="Double" Nullable="false" />
+          <Property Name="Humidity" Type="Double" Nullable="false" />
+          <Property Name="SensorID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HumiTemperSenser" Relationship="Buliding_ManagementModel.FK_HTDataTable_HumiTemperSenser" FromRole="HTDataTable" ToRole="HumiTemperSenser" />
+        </EntityType>
+        <EntityType Name="HumiTemperSenser">
+          <Key>
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="SensorID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HTDataTable" Relationship="Buliding_ManagementModel.FK_HTDataTable_HumiTemperSenser" FromRole="HumiTemperSenser" ToRole="HTDataTable" />
+          <NavigationProperty Name="SensorTable" Relationship="Buliding_ManagementModel.FK_HumiTemperSenser_SensorTable" FromRole="HumiTemperSenser" ToRole="SensorTable" />
+        </EntityType>
+        <EntityType Name="PackageCompany">
+          <Key>
+            <PropertyRef Name="PackageCompanyID" />
+          </Key>
+          <Property Name="PackageCompanyID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageTable" Relationship="Buliding_ManagementModel.FK_PackageTable_PackageCompany" FromRole="PackageCompany" ToRole="PackageTable" />
+          <NavigationProperty Name="ReturnPackage" Relationship="Buliding_ManagementModel.FK_ReturnCompany_PackageCompany" FromRole="PackageCompany" ToRole="ReturnPackage" />
+        </EntityType>
+        <EntityType Name="PackageTable">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackageArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="PackageCompanyID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Receiver" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ReceiverID" Type="Int32" />
+          <Property Name="Sign" Type="Boolean" />
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageCompany" Relationship="Buliding_ManagementModel.FK_PackageTable_PackageCompany" FromRole="PackageTable" ToRole="PackageCompany" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable" FromRole="PackageTable" ToRole="ResidentDataTable" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_PackageTable_StaffDataTable" FromRole="PackageTable" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityType Name="ResidentDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="Int32" Nullable="false" />
+          <Property Name="ResidentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentIDNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CommunityAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable" FromRole="ResidentDataTable" ToRole="EquipReservation" />
+          <NavigationProperty Name="HolderDataTable" Relationship="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable" FromRole="ResidentDataTable" ToRole="HolderDataTable" />
+          <NavigationProperty Name="PackageTable" Relationship="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable" FromRole="ResidentDataTable" ToRole="PackageTable" />
+          <NavigationProperty Name="PublicSpace" Relationship="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" FromRole="ResidentDataTable" ToRole="PublicSpace" />
+          <NavigationProperty Name="ReturnPackage" Relationship="Buliding_ManagementModel.FK_ReturnCompany_ResidentDataTable" FromRole="ResidentDataTable" ToRole="ReturnPackage" />
+        </EntityType>
+        <EntityType Name="ReturnPackage">
+          <Key>
+            <PropertyRef Name="ReturnDataID" />
+          </Key>
+          <Property Name="ReturnDataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReturnArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="ReturnCompanyID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Returnee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ReturneeID" Type="Int32" />
+          <Property Name="Sign" Type="Boolean" />
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageCompany" Relationship="Buliding_ManagementModel.FK_ReturnCompany_PackageCompany" FromRole="ReturnPackage" ToRole="PackageCompany" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_ReturnCompany_ResidentDataTable" FromRole="ReturnPackage" ToRole="ResidentDataTable" />
+        </EntityType>
+        <EntityType Name="SensorTable">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="SensorName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HumiTemperSenser" Relationship="Buliding_ManagementModel.FK_HumiTemperSenser_SensorTable" FromRole="SensorTable" ToRole="HumiTemperSenser" />
+          <NavigationProperty Name="SmokeSenser" Relationship="Buliding_ManagementModel.FK_SmokeSenser_SensorTable" FromRole="SensorTable" ToRole="SmokeSenser" />
+        </EntityType>
+        <EntityType Name="SmokeSenser">
+          <Key>
+            <PropertyRef Name="SensorID" />
+          </Key>
+          <Property Name="SensorID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SensorTable" Relationship="Buliding_ManagementModel.FK_SmokeSenser_SensorTable" FromRole="SmokeSenser" ToRole="SensorTable" />
+          <NavigationProperty Name="SmokeSenserData" Relationship="Buliding_ManagementModel.FK_煙霧偵測器數值_煙霧偵測器" FromRole="SmokeSenser" ToRole="SmokeSenserData" />
+        </EntityType>
+        <EntityType Name="SmokeSenserData">
+          <Key>
+            <PropertyRef Name="SensorID" />
+            <PropertyRef Name="Detectiondate" />
+          </Key>
+          <Property Name="SensorID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Detectiondate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Smokevalue" Type="Double" Nullable="false" />
+          <NavigationProperty Name="SmokeSenser" Relationship="Buliding_ManagementModel.FK_煙霧偵測器數值_煙霧偵測器" FromRole="SmokeSenserData" ToRole="SmokeSenser" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_EquipFix_Equipment">
+          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipFix" Role="EquipFix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipFix">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_Equipment">
+          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_ResidentDataTable">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HolderDataTable_ResidentDataTable">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.HolderDataTable" Role="HolderDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="HolderDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HTDataTable_HumiTemperSenser">
+          <End Type="Buliding_ManagementModel.HumiTemperSenser" Role="HumiTemperSenser" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.HTDataTable" Role="HTDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HumiTemperSenser">
+              <PropertyRef Name="SensorID" />
+            </Principal>
+            <Dependent Role="HTDataTable">
+              <PropertyRef Name="SensorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HumiTemperSenser_SensorTable">
+          <End Type="Buliding_ManagementModel.SensorTable" Role="SensorTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.HumiTemperSenser" Role="HumiTemperSenser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SensorTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="HumiTemperSenser">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_PackageCompany">
+          <End Type="Buliding_ManagementModel.PackageCompany" Role="PackageCompany" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.PackageTable" Role="PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="PackageCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnCompany_PackageCompany">
+          <End Type="Buliding_ManagementModel.PackageCompany" Role="PackageCompany" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.ReturnPackage" Role="ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturnCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_ResidentDataTable">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.PackageTable" Role="PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PublicSpace_ResidentDataTable">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.PublicSpace" Role="PublicSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PublicSpace">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnCompany_ResidentDataTable">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.ReturnPackage" Role="ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SmokeSenser_SensorTable">
+          <End Type="Buliding_ManagementModel.SensorTable" Role="SensorTable" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.SmokeSenser" Role="SmokeSenser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SensorTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SmokeSenser">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_煙霧偵測器數值_煙霧偵測器">
+          <End Type="Buliding_ManagementModel.SmokeSenser" Role="SmokeSenser" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.SmokeSenserData" Role="SmokeSenserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmokeSenser">
+              <PropertyRef Name="SensorID" />
+            </Principal>
+            <Dependent Role="SmokeSenserData">
+              <PropertyRef Name="SensorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StaffDataTable">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StaffName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="StaffPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StaffLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OnWork" Type="Boolean" Nullable="false" />
+          <Property Name="ShiftID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BulletinBoard" Relationship="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable" FromRole="StaffDataTable" ToRole="BulletinBoard" />
+          <NavigationProperty Name="PackageTable" Relationship="Buliding_ManagementModel.FK_PackageTable_StaffDataTable" FromRole="StaffDataTable" ToRole="PackageTable" />
+          <NavigationProperty Name="PublicSpace" Relationship="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" FromRole="StaffDataTable" ToRole="PublicSpace" />
+          <NavigationProperty Name="UserAccount" Relationship="Buliding_ManagementModel.FK_UserAccount_ShaffDataTable" FromRole="StaffDataTable" ToRole="UserAccount" />
+          <NavigationProperty Name="ShiftTable" Relationship="Buliding_ManagementModel.FK_StaffDataTable_ShiftTable" FromRole="StaffDataTable" ToRole="ShiftTable" />
+          <NavigationProperty Name="ParkingManagement" Relationship="Buliding_ManagementModel.FK_ParkingManagement_ShaffDataTable" FromRole="StaffDataTable" ToRole="ParkingManagement" />
+        </EntityType>
+        <Association Name="FK_BulletinBoard_ShaffDataTable">
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.BulletinBoard" Role="BulletinBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="BulletinBoard">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_StaffDataTable">
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="0..1" />
+          <End Type="Buliding_ManagementModel.PackageTable" Role="PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PublicSpace_ShaffDataTable">
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.PublicSpace" Role="PublicSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PublicSpace">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAccount_ShaffDataTable">
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.UserAccount" Role="UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StaffDataWorkTime">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="StaffName" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="OnWork" />
+          </Key>
+          <Property Name="StaffID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StaffName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="StaffPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StaffLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OnWork" Type="Boolean" Nullable="false" />
+          <Property Name="ShiftID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="WorkTime" Type="String" MaxLength="103" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ShiftTable">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="Time" Precision="0" />
+          <Property Name="EndTime" Type="Time" Precision="0" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_StaffDataTable_ShiftTable" FromRole="ShiftTable" ToRole="StaffDataTable" />
+        </EntityType>
+        <Association Name="FK_StaffDataTable_ShiftTable">
+          <End Type="Buliding_ManagementModel.ShiftTable" Role="ShiftTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShiftTable">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="StaffDataTable">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ParkingManagement">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ParkingNum" Type="Int32" Nullable="false" />
+          <Property Name="LicensePlate" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="EnterTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuitTime" Type="DateTime" Precision="3" />
+          <Property Name="ParkingFee" Type="Int32" />
+          <Property Name="ContactName" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="StaffID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_ParkingManagement_ShaffDataTable" FromRole="ParkingManagement" ToRole="StaffDataTable" />
+        </EntityType>
+        <Association Name="FK_ParkingManagement_ShaffDataTable">
+          <End Type="Buliding_ManagementModel.StaffDataTable" Role="StaffDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.ParkingManagement" Role="ParkingManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="ParkingManagement">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Buliding_ManagementModelStoreContainer" CdmEntityContainer="Buliding_ManagementEntities">
+          <EntitySetMapping Name="PublicSpace">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
+              <MappingFragment StoreEntitySet="PublicSpace">
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="RentTime" ColumnName="RentTime" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccount">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="salted" ColumnName="salted" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateUser" FunctionName="Buliding_ManagementModel.Store.CreateUser" />
+          <FunctionImportMapping FunctionImportName="GetSalted" FunctionName="Buliding_ManagementModel.Store.GetSalted" />
+          <FunctionImportMapping FunctionImportName="IsNameExists" FunctionName="Buliding_ManagementModel.Store.IsNameExists" />
+          <FunctionImportMapping FunctionImportName="Login" FunctionName="Buliding_ManagementModel.Store.Login" />
+          <EntitySetMapping Name="BulletinBoard">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.BulletinBoard">
+              <MappingFragment StoreEntitySet="BulletinBoard">
+                <ScalarProperty Name="annAnnex" ColumnName="annAnnex" />
+                <ScalarProperty Name="annContent" ColumnName="annContent" />
+                <ScalarProperty Name="annTitle" ColumnName="annTitle" />
+                <ScalarProperty Name="annDate" ColumnName="annDate" />
+                <ScalarProperty Name="annClass" ColumnName="annClass" />
+                <ScalarProperty Name="annGrade" ColumnName="annGrade" />
+                <ScalarProperty Name="annID" ColumnName="annID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipFix">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipFix">
+              <MappingFragment StoreEntitySet="EquipFix">
+                <ScalarProperty Name="Repaired" ColumnName="Repaired" />
+                <ScalarProperty Name="RepairedDate" ColumnName="RepairedDate" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="UseYear" ColumnName="UseYear" />
+                <ScalarProperty Name="Buydate" ColumnName="Buydate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipReservation">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipReservation">
+              <MappingFragment StoreEntitySet="EquipReservation">
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="ReservEquipNum" ColumnName="ReservEquipNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HolderDataTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.HolderDataTable">
+              <MappingFragment StoreEntitySet="HolderDataTable">
+                <ScalarProperty Name="Holder_LINE_ID" ColumnName="Holder LINE ID" />
+                <ScalarProperty Name="HolderPhone" ColumnName="HolderPhone" />
+                <ScalarProperty Name="HolderAddress" ColumnName="HolderAddress" />
+                <ScalarProperty Name="HolderIDNumber" ColumnName="HolderIDNumber" />
+                <ScalarProperty Name="HolderName" ColumnName="HolderName" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HTDataTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.HTDataTable">
+              <MappingFragment StoreEntitySet="HTDataTable">
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+                <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HumiTemperSenser">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.HumiTemperSenser">
+              <MappingFragment StoreEntitySet="HumiTemperSenser">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageCompany">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.PackageCompany">
+              <MappingFragment StoreEntitySet="PackageCompany">
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PackageCompanyID" ColumnName="PackageCompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.PackageTable">
+              <MappingFragment StoreEntitySet="PackageTable">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="PackageCompanyID" ColumnName="PackageCompanyID" />
+                <ScalarProperty Name="PackageArrivalDate" ColumnName="PackageArrivalDate" />
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResidentDataTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ResidentDataTable">
+              <MappingFragment StoreEntitySet="ResidentDataTable">
+                <ScalarProperty Name="ResidentLINE_ID" ColumnName="ResidentLINE ID" />
+                <ScalarProperty Name="CommunityAddress" ColumnName="CommunityAddress" />
+                <ScalarProperty Name="ResidentIDNumber" ColumnName="ResidentIDNumber" />
+                <ScalarProperty Name="ResidentPhone" ColumnName="ResidentPhone" />
+                <ScalarProperty Name="ResidentName" ColumnName="ResidentName" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnPackage">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ReturnPackage">
+              <MappingFragment StoreEntitySet="ReturnPackage">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="ReturneeID" ColumnName="ReturneeID" />
+                <ScalarProperty Name="Returnee" ColumnName="Returnee" />
+                <ScalarProperty Name="ReturnCompanyID" ColumnName="ReturnCompanyID" />
+                <ScalarProperty Name="ReturnArrivalDate" ColumnName="ReturnArrivalDate" />
+                <ScalarProperty Name="ReturnDataID" ColumnName="ReturnDataID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SensorTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.SensorTable">
+              <MappingFragment StoreEntitySet="SensorTable">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SensorName" ColumnName="SensorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmokeSenser">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.SmokeSenser">
+              <MappingFragment StoreEntitySet="SmokeSenser">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="place" ColumnName="place" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmokeSenserData">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.SmokeSenserData">
+              <MappingFragment StoreEntitySet="SmokeSenserData">
+                <ScalarProperty Name="Smokevalue" ColumnName="Smokevalue" />
+                <ScalarProperty Name="Detectiondate" ColumnName="Detectiondate" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffDataTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.StaffDataTable">
+              <MappingFragment StoreEntitySet="StaffDataTable">
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="OnWork" ColumnName="OnWork" />
+                <ScalarProperty Name="StaffLINE_ID" ColumnName="StaffLINE ID" />
+                <ScalarProperty Name="StaffPhone" ColumnName="StaffPhone" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffDataWorkTime">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.StaffDataWorkTime">
+              <MappingFragment StoreEntitySet="StaffDataWorkTime">
+                <ScalarProperty Name="WorkTime" ColumnName="WorkTime" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="OnWork" ColumnName="OnWork" />
+                <ScalarProperty Name="StaffLINE_ID" ColumnName="StaffLINE ID" />
+                <ScalarProperty Name="StaffPhone" ColumnName="StaffPhone" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftTable">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ShiftTable">
+              <MappingFragment StoreEntitySet="ShiftTable">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParkingManagement">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ParkingManagement">
+              <MappingFragment StoreEntitySet="ParkingManagement">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ParkingFee" ColumnName="ParkingFee" />
+                <ScalarProperty Name="QuitTime" ColumnName="QuitTime" />
+                <ScalarProperty Name="EnterTime" ColumnName="EnterTime" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="ParkingNum" ColumnName="ParkingNum" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Buliding_ManagementModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BulletinBoard">
+    <Key>
+      <PropertyRef Name="annID" />
+    </Key>
+    <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="annID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="annGrade" Type="nvarchar" MaxLength="10" />
+    <Property Name="annClass" Type="nvarchar" MaxLength="10" />
+    <Property Name="annDate" Type="datetime" />
+    <Property Name="annTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="annContent" Type="nvarchar(max)" />
+    <Property Name="annAnnex" Type="varbinary(max)" />
+    <Property Name="annFilename" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StaffDataTable">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="StaffName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EntryDate" Type="date" Nullable="false" />
+    <Property Name="LeaveDate" Type="date" />
+    <Property Name="StaffPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="StaffLINE ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="OnWork" Type="bit" />
+  </EntityType>
+  <Association Name="FK_BulletinBoard_StaffDataTable">
+    <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="1" />
+    <End Role="BulletinBoard" Type="Self.BulletinBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StaffDataTable">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="BulletinBoard">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Buliding_ManagementModel1StoreContainer">
+    <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BulletinBoard_StaffDataTable" Association="Self.FK_BulletinBoard_StaffDataTable">
+      <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+      <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

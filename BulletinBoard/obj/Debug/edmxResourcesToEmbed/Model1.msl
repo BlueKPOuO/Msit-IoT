@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AAModelStoreContainer" CdmEntityContainer="AAEntities">
+    <EntitySetMapping Name="BulletinBoard">
+      <EntityTypeMapping TypeName="AAModel.BulletinBoard">
+        <MappingFragment StoreEntitySet="BulletinBoard">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="annID" ColumnName="annID" />
+          <ScalarProperty Name="annGrade" ColumnName="annGrade" />
+          <ScalarProperty Name="annClass" ColumnName="annClass" />
+          <ScalarProperty Name="annDate" ColumnName="annDate" />
+          <ScalarProperty Name="annTitle" ColumnName="annTitle" />
+          <ScalarProperty Name="annContent" ColumnName="annContent" />
+          <ScalarProperty Name="annAnnex" ColumnName="annAnnex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

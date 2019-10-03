@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ParkingManagement">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="ParkingNum" Type="int" Nullable="false" />
+    <Property Name="LicensePlate" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="EnterTime" Type="datetime" Nullable="false" />
+    <Property Name="QuitTime" Type="datetime" />
+    <Property Name="ParkingFee" Type="int" />
+    <Property Name="ContactName" Type="nvarchar" MaxLength="16" />
+    <Property Name="ContactPhone" Type="char" MaxLength="10" />
+    <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="testModelStoreContainer">
+    <EntitySet Name="ParkingManagement" EntityType="Self.ParkingManagement" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a96025db644e413095a41295c381ad2c" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="Buliding_ManagementModel.PublicSpace" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.UserAccount" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.BulletinBoard" Width="1.5" PointX="9.375" PointY="13.25" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.EquipFix" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.Equipment" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.EquipReservation" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.HolderDataTable" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.HTDataTable" Width="1.5" PointX="17.25" PointY="9.25" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.HumiTemperSenser" Width="1.5" PointX="15" PointY="9.125" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.PackageCompany" Width="1.5" PointX="10.125" PointY="10.5" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.PackageTable" Width="1.5" PointX="13" PointY="4.875" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ResidentDataTable" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ReturnPackage" Width="1.5" PointX="6" PointY="8.25" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.SensorTable" Width="1.5" PointX="12.75" PointY="10.875" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.SmokeSenser" Width="1.5" PointX="15" PointY="12.125" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.SmokeSenserData" Width="1.5" PointX="17.25" PointY="12.375" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_EquipFix_Equipment" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_EquipReservation_Equipment" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_HTDataTable_HumiTemperSenser" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_HumiTemperSenser_SensorTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_PackageCompany" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_ReturnCompany_PackageCompany" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_ReturnCompany_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_SmokeSenser_SensorTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_煙霧偵測器數值_煙霧偵測器" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.StaffDataTable" Width="1.5" PointX="11.875" PointY="13.5" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_StaffDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_UserAccount_ShaffDataTable" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.StaffDataWorkTime" Width="1.5" PointX="7.5" PointY="12" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ShiftTable" Width="1.5" PointX="12.125" PointY="18.875" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_StaffDataTable_ShiftTable" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ParkingManagement" Width="1.5" PointX="9.25" PointY="18" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_ParkingManagement_ShaffDataTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Buliding_ManagementModel1StoreContainer" CdmEntityContainer="Buliding_ManagementEntities1">
+    <EntitySetMapping Name="BulletinBoards">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel1.BulletinBoard">
+        <MappingFragment StoreEntitySet="BulletinBoard">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="annID" ColumnName="annID" />
+          <ScalarProperty Name="annGrade" ColumnName="annGrade" />
+          <ScalarProperty Name="annClass" ColumnName="annClass" />
+          <ScalarProperty Name="annDate" ColumnName="annDate" />
+          <ScalarProperty Name="annTitle" ColumnName="annTitle" />
+          <ScalarProperty Name="annContent" ColumnName="annContent" />
+          <ScalarProperty Name="annAnnex" ColumnName="annAnnex" />
+          <ScalarProperty Name="annFilename" ColumnName="annFilename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffDataTables">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel1.StaffDataTable">
+        <MappingFragment StoreEntitySet="StaffDataTable">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="StaffPhone" ColumnName="StaffPhone" />
+          <ScalarProperty Name="StaffLINE_ID" ColumnName="StaffLINE ID" />
+          <ScalarProperty Name="OnWork" ColumnName="OnWork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

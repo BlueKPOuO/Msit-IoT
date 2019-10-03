@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="341fb1f0d2d34bf8a8de450f4d813edc" Name="Diagram1">
+        <EntityTypeShape EntityType="包裹管理系統Model.PackageCompany" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="包裹管理系統Model.PackageTable" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="包裹管理系統Model.ResidentDataTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="包裹管理系統Model.ReturnPackage" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="包裹管理系統Model.ShiftTable" Width="1.5" PointX="2.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="包裹管理系統Model.StaffDataTable" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="包裹管理系統Model.FK_PackageTable_PackageCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="包裹管理系統Model.FK_ReturnPackage_PackageCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="包裹管理系統Model.FK_PackageTable_ResidentDataTable" ManuallyRouted="false" />
+        <AssociationConnector Association="包裹管理系統Model.FK_PackageTable_StaffDataTable" ManuallyRouted="false" />
+        <AssociationConnector Association="包裹管理系統Model.FK_ReturnPackage_ResidentDataTable" ManuallyRouted="false" />
+        <AssociationConnector Association="包裹管理系統Model.FK_ReturnPackage_StaffDataTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

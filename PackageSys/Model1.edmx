@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="包裹管理系統Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PackageCompany">
+          <Key>
+            <PropertyRef Name="PackageCompanyID" />
+          </Key>
+          <Property Name="PackageCompanyID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PackageTable">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackageArrivalDate" Type="date" Nullable="false" />
+          <Property Name="PackageCompanyID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Receiver" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReceiverID" Type="int" Nullable="false" />
+          <Property Name="Sign" Type="bit" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ResidentDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="int" Nullable="false" />
+          <Property Name="ResidentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidentIDNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="CommunityAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidentPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="ResidentLINE ID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReturnPackage">
+          <Key>
+            <PropertyRef Name="ReturnDataID" />
+          </Key>
+          <Property Name="ReturnDataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReturnArrivalDate" Type="date" Nullable="false" />
+          <Property Name="ReturnCompanyID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Returnee" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReturneeID" Type="int" Nullable="false" />
+          <Property Name="Sign" Type="bit" />
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ShiftTable">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="AttendanceTime" Type="date" />
+        </EntityType>
+        <EntityType Name="StaffDataTable">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StaffName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="LeaveDate" Type="date" />
+          <Property Name="StaffPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="StaffLINE" Type="nvarchar" MaxLength="50" />
+          <Property Name="OnWork" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PackageTable_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="PackageCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_StaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturnCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_StaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="包裹管理系統ModelStoreContainer">
+          <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageTable" EntityType="Self.PackageTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResidentDataTable" EntityType="Self.ResidentDataTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnPackage" EntityType="Self.ReturnPackage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PackageTable_PackageCompany" Association="Self.FK_PackageTable_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_ResidentDataTable" Association="Self.FK_PackageTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_StaffDataTable" Association="Self.FK_PackageTable_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_PackageCompany" Association="Self.FK_ReturnPackage_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_ResidentDataTable" Association="Self.FK_ReturnPackage_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_StaffDataTable" Association="Self.FK_ReturnPackage_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="包裹管理系統Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PackageCompany">
+          <Key>
+            <PropertyRef Name="PackageCompanyID" />
+          </Key>
+          <Property Name="PackageCompanyID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PackageTable" Relationship="Self.FK_PackageTable_PackageCompany" FromRole="PackageCompany" ToRole="PackageTable" />
+          <NavigationProperty Name="ReturnPackage" Relationship="Self.FK_ReturnPackage_PackageCompany" FromRole="PackageCompany" ToRole="ReturnPackage" />
+        </EntityType>
+        <EntityType Name="PackageTable">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackageArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PackageCompanyID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Receiver" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ReceiverID" Type="Int32" Nullable="false" />
+          <Property Name="Sign" Type="Boolean" />
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageCompany" Relationship="Self.FK_PackageTable_PackageCompany" FromRole="PackageTable" ToRole="PackageCompany" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Self.FK_PackageTable_ResidentDataTable" FromRole="PackageTable" ToRole="ResidentDataTable" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Self.FK_PackageTable_StaffDataTable" FromRole="PackageTable" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityType Name="ResidentDataTable">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="Int32" Nullable="false" />
+          <Property Name="ResidentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentIDNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CommunityAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageTable" Relationship="Self.FK_PackageTable_ResidentDataTable" FromRole="ResidentDataTable" ToRole="PackageTable" />
+          <NavigationProperty Name="ReturnPackage" Relationship="Self.FK_ReturnPackage_ResidentDataTable" FromRole="ResidentDataTable" ToRole="ReturnPackage" />
+        </EntityType>
+        <EntityType Name="ReturnPackage">
+          <Key>
+            <PropertyRef Name="ReturnDataID" />
+          </Key>
+          <Property Name="ReturnDataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReturnArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReturnCompanyID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Returnee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ReturneeID" Type="Int32" Nullable="false" />
+          <Property Name="Sign" Type="Boolean" />
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackageCompany" Relationship="Self.FK_ReturnPackage_PackageCompany" FromRole="ReturnPackage" ToRole="PackageCompany" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Self.FK_ReturnPackage_ResidentDataTable" FromRole="ReturnPackage" ToRole="ResidentDataTable" />
+          <NavigationProperty Name="StaffDataTable" Relationship="Self.FK_ReturnPackage_StaffDataTable" FromRole="ReturnPackage" ToRole="StaffDataTable" />
+        </EntityType>
+        <EntityType Name="ShiftTable">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttendanceTime" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="StaffDataTable">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StaffName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="StaffPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StaffLINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OnWork" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PackageTable" Relationship="Self.FK_PackageTable_StaffDataTable" FromRole="StaffDataTable" ToRole="PackageTable" />
+          <NavigationProperty Name="ReturnPackage" Relationship="Self.FK_ReturnPackage_StaffDataTable" FromRole="StaffDataTable" ToRole="ReturnPackage" />
+        </EntityType>
+        <Association Name="FK_PackageTable_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="PackageCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_PackageCompany">
+          <End Role="PackageCompany" Type="Self.PackageCompany" Multiplicity="1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCompany">
+              <PropertyRef Name="PackageCompanyID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturnCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageTable_StaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="PackageTable" Type="Self.PackageTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="PackageTable">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_ResidentDataTable">
+          <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="ReturneeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnPackage_StaffDataTable">
+          <End Role="StaffDataTable" Type="Self.StaffDataTable" Multiplicity="0..1" />
+          <End Role="ReturnPackage" Type="Self.ReturnPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffDataTable">
+              <PropertyRef Name="StaffID" />
+            </Principal>
+            <Dependent Role="ReturnPackage">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" />
+          <EntitySet Name="PackageTable" EntityType="Self.PackageTable" />
+          <EntitySet Name="ResidentDataTable" EntityType="Self.ResidentDataTable" />
+          <EntitySet Name="ReturnPackage" EntityType="Self.ReturnPackage" />
+          <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" />
+          <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" />
+          <AssociationSet Name="FK_PackageTable_PackageCompany" Association="Self.FK_PackageTable_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_PackageCompany" Association="Self.FK_ReturnPackage_PackageCompany">
+            <End Role="PackageCompany" EntitySet="PackageCompany" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_ResidentDataTable" Association="Self.FK_PackageTable_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageTable_StaffDataTable" Association="Self.FK_PackageTable_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="PackageTable" EntitySet="PackageTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_ResidentDataTable" Association="Self.FK_ReturnPackage_ResidentDataTable">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnPackage_StaffDataTable" Association="Self.FK_ReturnPackage_StaffDataTable">
+            <End Role="StaffDataTable" EntitySet="StaffDataTable" />
+            <End Role="ReturnPackage" EntitySet="ReturnPackage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="包裹管理系統ModelStoreContainer" CdmEntityContainer="ShiEntities">
+          <EntitySetMapping Name="PackageCompany">
+            <EntityTypeMapping TypeName="包裹管理系統Model.PackageCompany">
+              <MappingFragment StoreEntitySet="PackageCompany">
+                <ScalarProperty Name="PackageCompanyID" ColumnName="PackageCompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageTable">
+            <EntityTypeMapping TypeName="包裹管理系統Model.PackageTable">
+              <MappingFragment StoreEntitySet="PackageTable">
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+                <ScalarProperty Name="PackageArrivalDate" ColumnName="PackageArrivalDate" />
+                <ScalarProperty Name="PackageCompanyID" ColumnName="PackageCompanyID" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResidentDataTable">
+            <EntityTypeMapping TypeName="包裹管理系統Model.ResidentDataTable">
+              <MappingFragment StoreEntitySet="ResidentDataTable">
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="ResidentName" ColumnName="ResidentName" />
+                <ScalarProperty Name="ResidentIDNumber" ColumnName="ResidentIDNumber" />
+                <ScalarProperty Name="CommunityAddress" ColumnName="CommunityAddress" />
+                <ScalarProperty Name="ResidentPhone" ColumnName="ResidentPhone" />
+                <ScalarProperty Name="ResidentLINE_ID" ColumnName="ResidentLINE ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnPackage">
+            <EntityTypeMapping TypeName="包裹管理系統Model.ReturnPackage">
+              <MappingFragment StoreEntitySet="ReturnPackage">
+                <ScalarProperty Name="ReturnDataID" ColumnName="ReturnDataID" />
+                <ScalarProperty Name="ReturnArrivalDate" ColumnName="ReturnArrivalDate" />
+                <ScalarProperty Name="ReturnCompanyID" ColumnName="ReturnCompanyID" />
+                <ScalarProperty Name="Returnee" ColumnName="Returnee" />
+                <ScalarProperty Name="ReturneeID" ColumnName="ReturneeID" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftTable">
+            <EntityTypeMapping TypeName="包裹管理系統Model.ShiftTable">
+              <MappingFragment StoreEntitySet="ShiftTable">
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="AttendanceTime" ColumnName="AttendanceTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffDataTable">
+            <EntityTypeMapping TypeName="包裹管理系統Model.StaffDataTable">
+              <MappingFragment StoreEntitySet="StaffDataTable">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="StaffPhone" ColumnName="StaffPhone" />
+                <ScalarProperty Name="StaffLINE" ColumnName="StaffLINE" />
+                <ScalarProperty Name="OnWork" ColumnName="OnWork" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
