@@ -8,58 +8,40 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ParkingManagement.Properties
-{
-
-
+namespace MainForm.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
             }
         }
-        public Settings()
-        {
-            if (this.CarIn == null)
-            {
-                this.CarIn = new ParkInfomation.ParkInfo[30];
-            }
-        }
-
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int rid
-        {
-            get
-            {
+        public int rid {
+            get {
                 return ((int)(this["rid"]));
             }
-            set
-            {
+            set {
                 this["rid"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public ParkInfomation.ParkInfo[] CarIn
-        {
-            get
-            {
-                return ((ParkInfomation.ParkInfo[])(this["CarIn"]));
+        public global::ParkInfomation.ParkInfo CarIn {
+            get {
+                return ((global::ParkInfomation.ParkInfo)(this["CarIn"]));
             }
-            set
-            {
+            set {
                 this["CarIn"] = value;
             }
         }

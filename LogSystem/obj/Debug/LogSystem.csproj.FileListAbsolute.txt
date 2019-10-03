@@ -22,3 +22,15 @@ E:\Share\IOT專題\柯宜賢\MainForm\LogSystem\obj\Debug\LogSystem.csprojAssemb
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\LogSystem\obj\Debug\LogSystem.dll
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\LogSystem\obj\Debug\LogSystem.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.dll.config
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\FormLogoClassLibrary.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csprojAssemblyReference.cache
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.FrmCreate.resources
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.FrmLogin.resources
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.GenerateResource.cache
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.CoreCompileInputs.cache
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.pdb

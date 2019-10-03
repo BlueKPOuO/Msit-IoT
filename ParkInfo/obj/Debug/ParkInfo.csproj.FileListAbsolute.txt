@@ -28,3 +28,9 @@ E:\Share\IOT專題\柯宜賢\MainForm\ParkInfo\obj\Debug\ParkInfo.pdb
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\ParkInfo\obj\Debug\ParkInfo.dll
 \\192.168.35.151\Share\IOT專題\柯宜賢\MainForm\ParkInfo\obj\Debug\ParkInfo.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\bin\Debug\ParkInfo.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\bin\Debug\ParkInfo.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\obj\Debug\ParkInfo.csprojAssemblyReference.cache
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\obj\Debug\ParkInfo.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\ParkInfo\obj\Debug\ParkInfo.pdb
