@@ -193,3 +193,5 @@ C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\obj\Debug\MainForm.csproj.CoreCo
 C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\obj\Debug\MainForm.csproj.CopyComplete
 C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\obj\Debug\MainForm.exe
 C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\obj\Debug\MainForm.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\bin\Debug\DisasterPreventionSys.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\MainForm\bin\Debug\DisasterPreventionSys.pdb

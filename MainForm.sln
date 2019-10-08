@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard", "BulletinBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisasterPreventionSys", "DisasterPreventionSys\DisasterPreventionSys.csproj", "{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureHumiditySys", "TemperatureHumiditySys\TemperatureHumiditySys.csproj", "{66559426-9770-4661-96E5-A9F0807D8BCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66559426-9770-4661-96E5-A9F0807D8BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66559426-9770-4661-96E5-A9F0807D8BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66559426-9770-4661-96E5-A9F0807D8BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66559426-9770-4661-96E5-A9F0807D8BCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

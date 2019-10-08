@@ -178,6 +178,7 @@
             this.button6.TabIndex = 11;
             this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             this.button6.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.button6.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 

@@ -13,6 +13,7 @@ using LogSystem;
 using ParkingManagement;
 using PackageSys;
 using EquipSys;
+using DisasterPreventionSys;
 
 namespace MainForm
 {
@@ -131,6 +132,13 @@ namespace MainForm
             FormEqMain feqm = new FormEqMain();
             feqm.UserName = UserName;
             feqm.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DPSys dps = new DPSys();
+            dps.UserName = UserName;
+            dps.Show();
         }
     }
 }

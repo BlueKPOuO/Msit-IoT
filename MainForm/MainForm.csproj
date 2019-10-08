@@ -96,6 +96,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DisasterPreventionSys\DisasterPreventionSys.csproj">
+      <Project>{9eebdce6-0ef1-4bac-bb51-de750b3bd36f}</Project>
+      <Name>DisasterPreventionSys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EquipSys\EquipSys.csproj">
       <Project>{ff6624d5-c4e5-4124-8ed9-577f1aaae39c}</Project>
       <Name>EquipSys</Name>
