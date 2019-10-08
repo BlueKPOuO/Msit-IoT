@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicSpaceSys", "PublicSpa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard", "BulletinBoard\BulletinBoard.csproj", "{4AB78D82-4DA9-4D24-901B-E9EEBAFB2DB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisasterPreventionSys", "DisasterPreventionSys\DisasterPreventionSys.csproj", "{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{4AB78D82-4DA9-4D24-901B-E9EEBAFB2DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB78D82-4DA9-4D24-901B-E9EEBAFB2DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB78D82-4DA9-4D24-901B-E9EEBAFB2DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EEBDCE6-0EF1-4BAC-BB51-DE750B3BD36F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
