@@ -29,50 +29,51 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DPSys));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnSmoke = new System.Windows.Forms.Button();
+            this.btnHT = new System.Windows.Forms.Button();
+            this.btnAntiTheft = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnSmoke
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.ForeColor = System.Drawing.Color.DarkRed;
-            this.button1.Location = new System.Drawing.Point(327, 161);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(250, 250);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "煙霧偵測";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSmoke.BackColor = System.Drawing.Color.Transparent;
+            this.btnSmoke.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSmoke.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnSmoke.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnSmoke.Location = new System.Drawing.Point(327, 161);
+            this.btnSmoke.Name = "btnSmoke";
+            this.btnSmoke.Size = new System.Drawing.Size(250, 250);
+            this.btnSmoke.TabIndex = 5;
+            this.btnSmoke.Text = "煙霧偵測";
+            this.btnSmoke.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnHT
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button2.ForeColor = System.Drawing.Color.DarkRed;
-            this.button2.Location = new System.Drawing.Point(616, 161);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 250);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "溫度偵測";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnHT.BackColor = System.Drawing.Color.Transparent;
+            this.btnHT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHT.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnHT.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnHT.Location = new System.Drawing.Point(616, 161);
+            this.btnHT.Name = "btnHT";
+            this.btnHT.Size = new System.Drawing.Size(250, 250);
+            this.btnHT.TabIndex = 6;
+            this.btnHT.Text = "溫度偵測";
+            this.btnHT.UseVisualStyleBackColor = false;
+            this.btnHT.Click += new System.EventHandler(this.btnHT_Click);
             // 
-            // button4
+            // btnAntiTheft
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button4.ForeColor = System.Drawing.Color.DarkRed;
-            this.button4.Location = new System.Drawing.Point(905, 161);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(250, 250);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "防盜偵測";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnAntiTheft.BackColor = System.Drawing.Color.Transparent;
+            this.btnAntiTheft.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAntiTheft.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAntiTheft.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnAntiTheft.Location = new System.Drawing.Point(905, 161);
+            this.btnAntiTheft.Name = "btnAntiTheft";
+            this.btnAntiTheft.Size = new System.Drawing.Size(250, 250);
+            this.btnAntiTheft.TabIndex = 8;
+            this.btnAntiTheft.Text = "防盜偵測";
+            this.btnAntiTheft.UseVisualStyleBackColor = false;
             // 
             // DPSys
             // 
@@ -80,15 +81,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1184, 561);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnSmoke);
+            this.Controls.Add(this.btnHT);
+            this.Controls.Add(this.btnAntiTheft);
             this.Name = "DPSys";
             this.Text = "DPSys";
             this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.button4, 0);
-            this.Controls.SetChildIndex(this.button2, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btnAntiTheft, 0);
+            this.Controls.SetChildIndex(this.btnHT, 0);
+            this.Controls.SetChildIndex(this.btnSmoke, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -97,8 +98,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnSmoke;
+        private System.Windows.Forms.Button btnHT;
+        private System.Windows.Forms.Button btnAntiTheft;
     }
 }

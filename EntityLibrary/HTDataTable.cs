@@ -14,10 +14,10 @@ namespace EntityLibrary
     
     public partial class HTDataTable
     {
+        public string SensorID { get; set; }
         public System.DateTime Time { get; set; }
         public double Temperature { get; set; }
         public double Humidity { get; set; }
-        public string SensorID { get; set; }
     
         public virtual HumiTemperSenser HumiTemperSenser { get; set; }
     }

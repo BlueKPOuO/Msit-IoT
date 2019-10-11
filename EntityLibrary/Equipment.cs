@@ -21,7 +21,7 @@ namespace EntityLibrary
             this.EquipReservation = new HashSet<EquipReservation>();
         }
     
-        public string EquipmentID { get; set; }
+        public int EquipmentID { get; set; }
         public string EquipmentName { get; set; }
         public string Place { get; set; }
         public string Vendor { get; set; }

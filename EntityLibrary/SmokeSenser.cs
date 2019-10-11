@@ -24,6 +24,7 @@ namespace EntityLibrary
         public string place { get; set; }
         public string Vendor { get; set; }
         public string Status { get; set; }
+        public Nullable<double> Frequency { get; set; }
         public string CategoryID { get; set; }
     
         public virtual SensorTable SensorTable { get; set; }

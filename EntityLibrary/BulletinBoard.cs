@@ -22,6 +22,7 @@ namespace EntityLibrary
         public string annTitle { get; set; }
         public string annContent { get; set; }
         public byte[] annAnnex { get; set; }
+        public string annFilename { get; set; }
     
         public virtual StaffDataTable StaffDataTable { get; set; }
     }

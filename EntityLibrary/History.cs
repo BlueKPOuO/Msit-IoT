@@ -12,12 +12,17 @@ namespace EntityLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class History
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ResidentID { get; set; }
+        public string StaffID { get; set; }
+        public string seq { get; set; }
+        public string barrierName { get; set; }
+        public string LocationID { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public string Reason { get; set; }
+    
+        public virtual Location Location { get; set; }
     }
 }

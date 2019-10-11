@@ -16,11 +16,14 @@ namespace EntityLibrary
     {
         public int ResidentID { get; set; }
         public string StaffID { get; set; }
-        public string Location { get; set; }
-        public System.DateTime RentTime { get; set; }
-        public System.DateTime ReturnTime { get; set; }
+        public string seq { get; set; }
+        public string barrierName { get; set; }
+        public string LocationID { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public string Reason { get; set; }
     
+        public virtual Location Location { get; set; }
         public virtual ResidentDataTable ResidentDataTable { get; set; }
         public virtual StaffDataTable StaffDataTable { get; set; }
     }

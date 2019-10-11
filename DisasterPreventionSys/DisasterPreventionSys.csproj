@@ -69,5 +69,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemperatureHumiditySys\TemperatureHumiditySys.csproj">
+      <Project>{66559426-9770-4661-96e5-a9f0807d8bcd}</Project>
+      <Name>TemperatureHumiditySys</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

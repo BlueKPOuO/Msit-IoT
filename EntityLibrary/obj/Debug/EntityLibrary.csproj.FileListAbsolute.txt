@@ -43,3 +43,17 @@ C:\Users\III\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csp
 C:\Users\III\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csproj.CopyComplete
 C:\Users\III\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.dll
 C:\Users\III\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityLibrary.dll.config
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityLibrary.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityLibrary.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csproj.CopyComplete
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.pdb

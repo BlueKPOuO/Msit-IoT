@@ -14,8 +14,8 @@ namespace EntityLibrary
     
     public partial class EquipFix
     {
-        public string ReservationID { get; set; }
-        public string EquipmentID { get; set; }
+        public int EquipmentFixID { get; set; }
+        public int EquipmentID { get; set; }
         public string Reason { get; set; }
         public System.DateTime ReportDate { get; set; }
         public Nullable<System.DateTime> RepairedDate { get; set; }

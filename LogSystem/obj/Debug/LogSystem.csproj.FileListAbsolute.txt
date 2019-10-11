@@ -34,3 +34,14 @@ C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.Core
 C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
 C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.dll
 C:\Users\III\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.dll.config
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\LogSystem.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\bin\Debug\FormLogoClassLibrary.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.FrmCreate.resources
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.FrmLogin.resources
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.pdb

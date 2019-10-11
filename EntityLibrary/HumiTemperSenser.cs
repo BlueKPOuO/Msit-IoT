@@ -23,7 +23,8 @@ namespace EntityLibrary
         public string SensorID { get; set; }
         public string Place { get; set; }
         public string Vendor { get; set; }
-        public string Status { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public Nullable<double> Frequency { get; set; }
         public string CategoryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
