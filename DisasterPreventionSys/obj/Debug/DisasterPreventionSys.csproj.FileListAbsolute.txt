@@ -29,3 +29,13 @@ C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityLibrary.dll.config
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityFramework.xml
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\M2Mqtt.Net.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityLibrary.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityFramework.dll
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.dll.config
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityLibrary.pdb
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityLibrary.dll.config
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityFramework.xml
+C:\Users\III\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\zh-Hant\EntityFramework.resources.dll

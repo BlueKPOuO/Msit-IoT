@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisasterPreventionSys", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureHumiditySys", "TemperatureHumiditySys\TemperatureHumiditySys.csproj", "{66559426-9770-4661-96E5-A9F0807D8BCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlLibrary", "ControlLibrary\ControlLibrary.csproj", "{773DB2E3-E495-41EE-B382-69EECACCB405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{66559426-9770-4661-96E5-A9F0807D8BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66559426-9770-4661-96E5-A9F0807D8BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66559426-9770-4661-96E5-A9F0807D8BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773DB2E3-E495-41EE-B382-69EECACCB405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773DB2E3-E495-41EE-B382-69EECACCB405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773DB2E3-E495-41EE-B382-69EECACCB405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773DB2E3-E495-41EE-B382-69EECACCB405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

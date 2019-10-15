@@ -42,6 +42,9 @@
             this.tpReport = new System.Windows.Forms.TabPage();
             this.lbReport1 = new System.Windows.Forms.Label();
             this.tpTest = new System.Windows.Forms.TabPage();
+            this.lbdgv = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btTSave = new System.Windows.Forms.Button();
             this.dgvHTData = new System.Windows.Forms.DataGridView();
             this.tbHum = new System.Windows.Forms.TextBox();
@@ -55,9 +58,7 @@
             this.lbTID = new System.Windows.Forms.Label();
             this.lbTest1 = new System.Windows.Forms.Label();
             this.GetDataTime = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbdgv = new System.Windows.Forms.Label();
+            this.btn_AlertTest = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpSearch.SuspendLayout();
@@ -169,6 +170,7 @@
             // 
             // tpTest
             // 
+            this.tpTest.Controls.Add(this.btn_AlertTest);
             this.tpTest.Controls.Add(this.lbdgv);
             this.tpTest.Controls.Add(this.label3);
             this.tpTest.Controls.Add(this.label2);
@@ -191,6 +193,36 @@
             this.tpTest.TabIndex = 2;
             this.tpTest.Text = "tpTest";
             this.tpTest.UseVisualStyleBackColor = true;
+            // 
+            // lbdgv
+            // 
+            this.lbdgv.AutoSize = true;
+            this.lbdgv.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbdgv.Location = new System.Drawing.Point(33, 200);
+            this.lbdgv.Name = "lbdgv";
+            this.lbdgv.Size = new System.Drawing.Size(105, 20);
+            this.lbdgv.TabIndex = 16;
+            this.lbdgv.Text = "資料庫資料：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(745, 143);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 20);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "%";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(745, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "℃";
             // 
             // btTSave
             // 
@@ -354,35 +386,17 @@
             this.GetDataTime.Enabled = true;
             this.GetDataTime.Tick += new System.EventHandler(this.GetDataTime_Tick);
             // 
-            // label2
+            // btn_AlertTest
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(745, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "℃";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(745, 143);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 20);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "%";
-            // 
-            // lbdgv
-            // 
-            this.lbdgv.AutoSize = true;
-            this.lbdgv.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbdgv.Location = new System.Drawing.Point(33, 200);
-            this.lbdgv.Name = "lbdgv";
-            this.lbdgv.Size = new System.Drawing.Size(105, 20);
-            this.lbdgv.TabIndex = 16;
-            this.lbdgv.Text = "資料庫資料：";
+            this.btn_AlertTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btn_AlertTest.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.btn_AlertTest.Location = new System.Drawing.Point(743, 28);
+            this.btn_AlertTest.Name = "btn_AlertTest";
+            this.btn_AlertTest.Size = new System.Drawing.Size(108, 39);
+            this.btn_AlertTest.TabIndex = 17;
+            this.btn_AlertTest.Text = "警報測試";
+            this.btn_AlertTest.UseVisualStyleBackColor = false;
+            this.btn_AlertTest.Click += new System.EventHandler(this.btn_AlertTest_Click);
             // 
             // THSensor
             // 
@@ -436,5 +450,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbdgv;
+        private System.Windows.Forms.Button btn_AlertTest;
     }
 }

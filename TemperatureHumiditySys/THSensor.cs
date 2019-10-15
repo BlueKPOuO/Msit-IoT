@@ -86,7 +86,8 @@ namespace TemperatureHumiditySys
             subTopic = Convert.ToString(cbSensorID.SelectedItem); 
             if (brokerHostname != null && userName != null && password != null)
             {
-                Connect(); client = new MqttClient(brokerHostname);
+                Connect();
+                client = new MqttClient(brokerHostname);
                 if (Check(brokerHostname, brokerPort, 1000))
                 {
                     if (brokerHostname != null && userName != null && password != null)
@@ -114,12 +115,24 @@ namespace TemperatureHumiditySys
 
         void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            string old_temp = tbTemp.Text;
+            string old_hum = tbHum.Text;
+
             string msg = Encoding.UTF8.GetString(e.Message);
             if (msg != null && msg != "")
             {
                 tbTemp.Text = msg.Substring(15, 5);
                 tbHum.Text = msg.Substring(32, 5);
             }
+            if (Convert.ToInt32(old_temp) > 80 && Convert.ToInt32(tbTemp.Text) > 80)
+            {
+                Iot_Alert();
+            }
+        }
+
+        private void Iot_Alert()
+        {
+            MessageBox.Show($"{subTopic}疑似發生火災!該處連續出現多筆高溫數據!!");
 
         }
 
@@ -184,6 +197,31 @@ namespace TemperatureHumiditySys
         private void THSensor_FormClosing(object sender, FormClosingEventArgs e)
         {
             client.Disconnect();
+        }
+
+        private void btn_AlertTest_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < 4; i++)
+            {//溫度待填回傳字串進去
+                Publish("MQ5_01", "", 2);
+            }
+        }
+
+        private void Publish(string _topic, string msg, int Qos)
+        {
+            switch (Qos)
+            {
+                case 0:
+                    client.Publish(_topic, Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, true);
+                    break;
+                case 1:
+                    client.Publish(_topic, Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
+                    break;
+                case 2:
+                    client.Publish(_topic, Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+                    break;
+            }
+
         }
     }
 }
