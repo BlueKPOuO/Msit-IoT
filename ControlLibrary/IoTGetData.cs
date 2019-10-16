@@ -12,6 +12,7 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Net.Sockets;
 using System.Net;
 using System.Reflection;
+using EntityLibrary;
 
 namespace ControlLibrary
 {
@@ -119,7 +120,12 @@ namespace ControlLibrary
                     MessageBox.Show("連接不到IoT系統,請確認連線後再嘗試");
                     return;
                 }
-            }
+            }/*
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            var q = from a in db.HumiTemperSenser
+                    where a.SensorID == GetDescription(subTopic)
+                    select a.Frequency;
+            timer.Interval = Convert.ToInt32(q.First().ToString()) * 1000 * 60;*/
         }
 
         public string GetDescription(Enum value)
@@ -127,6 +133,31 @@ namespace ControlLibrary
             FieldInfo fi = value.GetType().GetField(value.ToString());
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+            HTDataTable x = new HTDataTable
+            {
+                SensorID = GetDescription(subTopic),
+                Time = Convert.ToDateTime(now),
+                Temperature = Convert.ToDouble(temp),
+                Humidity = Convert.ToDouble(hum)
+            };
+            //db.HTDataTable.Add(x);
+            //db.SaveChanges();
+            /*
+            var q = from a in db.HTDataTable
+                    select new
+                    {
+                        a.SensorID,
+                        a.Time,
+                        a.Temperature,
+                        a.Humidity
+                    };
+            dgvHTData.DataSource = q.ToList();*/
         }
     }
 }
