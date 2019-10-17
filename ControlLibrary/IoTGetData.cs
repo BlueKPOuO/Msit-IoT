@@ -90,7 +90,6 @@ namespace ControlLibrary
             catch (Exception e)
             {
                 error = "Connection error: " + e.ToString();
-
             }
         }
 
