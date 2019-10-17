@@ -24,15 +24,7 @@ namespace TemperatureHumiditySys
             CheckForIllegalCrossThreadCalls = false;
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             cbSensorID.DataSource = db.HumiTemperSenser.Select(p => p.SensorID).ToList();
-            var q = from a in db.HTDataTable
-                    select new
-                    {
-                        a.SensorID,
-                        a.Time,
-                        a.Temperature,
-                        a.Humidity
-                    };
-            dgvHTData.DataSource = q.ToList();
+            
         }
 
         private MqttClient client;
@@ -78,6 +70,7 @@ namespace TemperatureHumiditySys
 
         private void cbSensorID_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbSensorID.SelectedItem == null || cbSensorID.SelectedItem == "") return;
             try
             {
                 client.Disconnect();
@@ -96,6 +89,24 @@ namespace TemperatureHumiditySys
                         client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
                         byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE };
                         client.Subscribe(new string[] { subTopic }, qosLevels);
+
+                        Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                        var q = from a in db.HumiTemperSenser
+                                where a.SensorID == subTopic
+                                select a.Frequency;
+                        tbFrequency.Text = q.First().ToString();
+                        GetDataTime.Interval = Convert.ToInt32(tbFrequency.Text) * 1000 * 60;
+                        //匯入資料到datagridview
+                        var qq = from a in db.HTDataTable
+                                 where a.SensorID == subTopic
+                                 select new
+                                 {
+                                    a.SensorID,
+                                    a.Time,
+                                    a.Temperature,
+                                    a.Humidity
+                                 };
+                        dgvHTData.DataSource = qq.ToList();
                     }
                 }
                 else
@@ -103,12 +114,6 @@ namespace TemperatureHumiditySys
                     MessageBox.Show("連接不到IoT系統,請確認連線後再嘗試");
                     return;
                 }
-                Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-                var q = from a in db.HumiTemperSenser
-                        where a.SensorID == subTopic
-                        select a.Frequency;
-                tbFrequency.Text = q.First().ToString();
-                GetDataTime.Interval = Convert.ToInt32(tbFrequency.Text) * 1000 * 60;
             }
 
         }
@@ -124,9 +129,12 @@ namespace TemperatureHumiditySys
                 tbTemp.Text = msg.Substring(15, 5);
                 tbHum.Text = msg.Substring(32, 5);
             }
-            if (Convert.ToInt32(old_temp) > 80 && Convert.ToInt32(tbTemp.Text) > 80)
-            {
-                Iot_Alert();
+            if (old_hum != null && old_hum != "" && old_temp != null && old_temp != "") 
+            { 
+                if (Convert.ToDouble(old_temp) > 80 && Convert.ToDouble(tbTemp.Text) > 80)
+                {
+                    Iot_Alert();
+                }
             }
         }
 
@@ -165,7 +173,6 @@ namespace TemperatureHumiditySys
             catch (Exception e)
             {
                 error = "Connection error: " + e.ToString();
-
             }
         }
 
@@ -201,9 +208,9 @@ namespace TemperatureHumiditySys
 
         private void btn_AlertTest_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 2; i++)
             {//溫度待填回傳字串進去
-                Publish("MQ5_01", "", 2);
+                Publish("home_dht", "{\"temperature\":90.00,\"humidity\":00.00}", 2);
             }
         }
 
@@ -222,6 +229,85 @@ namespace TemperatureHumiditySys
                     break;
             }
 
+        }
+
+        private void btnNewSensor_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("確定要新增資料?", "是否新增", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                if (tbName.Text == "" || tbLocation.Text == "" || tbVendor.Text == "" || tbSearchFrequency.Text == ""|| !double.TryParse(tbSearchFrequency.Text,out double fre))
+                {
+                    MessageBox.Show("有格子還沒填完!");
+                    return;
+                }
+                Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                HumiTemperSenser hts = new HumiTemperSenser();
+                hts.SensorID = tbName.Text;
+                hts.Place = tbLocation.Text;
+                hts.Vendor = tbVendor.Text;
+                hts.Status = chbStatus.Checked;
+                hts.Frequency = fre;
+                hts.CategoryID = "HT";
+                db.HumiTemperSenser.Add(hts);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("請確認是否有重複,或者資料是否填寫完整 \r\n" + ex.Message);
+                }
+                MessageBox.Show("儲存完成!");
+                Refresh_Method();
+
+            }
+        }
+
+        private void btnDeleteSensor_Click(object sender, EventArgs e)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            /*
+            var qq = from a in db.HumiTemperSenser.AsEnumerable()
+                     select a;
+            var q = qq.Skip(dgvSensorList.CurrentCell.RowIndex).First();*/
+            var q = db.HumiTemperSenser.AsEnumerable().Skip(dgvSensorList.CurrentCell.RowIndex).First();
+            HumiTemperSenser h = new HumiTemperSenser();
+            h = q;
+            if(MessageBox.Show($"確定要刪除感應器{h.SensorID}資料?", "是否刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    db.HumiTemperSenser.Remove(h);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("資料刪除失敗 \r\n" + ex.Message);
+                    return;
+                }
+                MessageBox.Show("資料已刪除");
+                Refresh_Method();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Refresh_Method();
+        }
+
+        private void Refresh_Method()
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            var q = from a in db.HumiTemperSenser
+                    select a;
+            dgvSensorList.DataSource = q.ToList(); 
+            cbSensorID.DataSource = null;
+            cbSensorID.DataSource = db.HumiTemperSenser.Select(p => p.SensorID).ToList();
+        }
+
+        private void THSensor_Load(object sender, EventArgs e)
+        {
+            Refresh_Method();
         }
     }
 }

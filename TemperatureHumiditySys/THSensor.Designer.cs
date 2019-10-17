@@ -29,19 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpSearch = new System.Windows.Forms.TabPage();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnEditSensor = new System.Windows.Forms.Button();
+            this.btnDeleteSensor = new System.Windows.Forms.Button();
+            this.btnNewSensor = new System.Windows.Forms.Button();
+            this.dgvSensorList = new System.Windows.Forms.DataGridView();
             this.lbSearch1 = new System.Windows.Forms.Label();
             this.tpReport = new System.Windows.Forms.TabPage();
             this.lbReport1 = new System.Windows.Forms.Label();
             this.tpTest = new System.Windows.Forms.TabPage();
+            this.btn_AlertTest = new System.Windows.Forms.Button();
             this.lbdgv = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,10 +68,20 @@
             this.lbTID = new System.Windows.Forms.Label();
             this.lbTest1 = new System.Windows.Forms.Label();
             this.GetDataTime = new System.Windows.Forms.Timer(this.components);
-            this.btn_AlertTest = new System.Windows.Forms.Button();
+            this.lbName = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbLocation = new System.Windows.Forms.TextBox();
+            this.lbLocation = new System.Windows.Forms.Label();
+            this.tbVendor = new System.Windows.Forms.TextBox();
+            this.lbVendor = new System.Windows.Forms.Label();
+            this.lbstatus = new System.Windows.Forms.Label();
+            this.chbStatus = new System.Windows.Forms.CheckBox();
+            this.tbSearchFrequency = new System.Windows.Forms.TextBox();
+            this.lbFrequency = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSensorList)).BeginInit();
             this.tpReport.SuspendLayout();
             this.tpTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHTData)).BeginInit();
@@ -126,6 +146,21 @@
             // 
             // tpSearch
             // 
+            this.tpSearch.Controls.Add(this.tbSearchFrequency);
+            this.tpSearch.Controls.Add(this.lbFrequency);
+            this.tpSearch.Controls.Add(this.chbStatus);
+            this.tpSearch.Controls.Add(this.lbstatus);
+            this.tpSearch.Controls.Add(this.tbVendor);
+            this.tpSearch.Controls.Add(this.lbVendor);
+            this.tpSearch.Controls.Add(this.tbLocation);
+            this.tpSearch.Controls.Add(this.lbLocation);
+            this.tpSearch.Controls.Add(this.tbName);
+            this.tpSearch.Controls.Add(this.lbName);
+            this.tpSearch.Controls.Add(this.btnRefresh);
+            this.tpSearch.Controls.Add(this.btnEditSensor);
+            this.tpSearch.Controls.Add(this.btnDeleteSensor);
+            this.tpSearch.Controls.Add(this.btnNewSensor);
+            this.tpSearch.Controls.Add(this.dgvSensorList);
             this.tpSearch.Controls.Add(this.lbSearch1);
             this.tpSearch.Location = new System.Drawing.Point(4, 22);
             this.tpSearch.Name = "tpSearch";
@@ -134,6 +169,95 @@
             this.tpSearch.TabIndex = 0;
             this.tpSearch.Text = "tpSearch";
             this.tpSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("微軟正黑體", 15F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.Location = new System.Drawing.Point(199, 54);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(121, 47);
+            this.btnRefresh.TabIndex = 17;
+            this.btnRefresh.Text = "重新整理";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnEditSensor
+            // 
+            this.btnEditSensor.Font = new System.Drawing.Font("微軟正黑體", 15F, System.Drawing.FontStyle.Bold);
+            this.btnEditSensor.Location = new System.Drawing.Point(571, 54);
+            this.btnEditSensor.Name = "btnEditSensor";
+            this.btnEditSensor.Size = new System.Drawing.Size(121, 47);
+            this.btnEditSensor.TabIndex = 16;
+            this.btnEditSensor.Text = "編輯感測器";
+            this.btnEditSensor.UseVisualStyleBackColor = true;
+            this.btnEditSensor.Visible = false;
+            // 
+            // btnDeleteSensor
+            // 
+            this.btnDeleteSensor.Font = new System.Drawing.Font("微軟正黑體", 15F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteSensor.Location = new System.Drawing.Point(719, 54);
+            this.btnDeleteSensor.Name = "btnDeleteSensor";
+            this.btnDeleteSensor.Size = new System.Drawing.Size(121, 47);
+            this.btnDeleteSensor.TabIndex = 15;
+            this.btnDeleteSensor.Text = "刪除感測器";
+            this.btnDeleteSensor.UseVisualStyleBackColor = true;
+            this.btnDeleteSensor.Click += new System.EventHandler(this.btnDeleteSensor_Click);
+            // 
+            // btnNewSensor
+            // 
+            this.btnNewSensor.Font = new System.Drawing.Font("微軟正黑體", 15F, System.Drawing.FontStyle.Bold);
+            this.btnNewSensor.Location = new System.Drawing.Point(57, 54);
+            this.btnNewSensor.Name = "btnNewSensor";
+            this.btnNewSensor.Size = new System.Drawing.Size(121, 47);
+            this.btnNewSensor.TabIndex = 14;
+            this.btnNewSensor.Text = "新增感測器";
+            this.btnNewSensor.UseVisualStyleBackColor = true;
+            this.btnNewSensor.Click += new System.EventHandler(this.btnNewSensor_Click);
+            // 
+            // dgvSensorList
+            // 
+            this.dgvSensorList.AllowUserToResizeColumns = false;
+            this.dgvSensorList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dgvSensorList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
+            this.dgvSensorList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvSensorList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvSensorList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSensorList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(109)))), ((int)(((byte)(158)))));
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(255)))), ((int)(((byte)(197)))));
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSensorList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            this.dgvSensorList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSensorList.DefaultCellStyle = dataGridViewCellStyle43;
+            this.dgvSensorList.EnableHeadersVisualStyles = false;
+            this.dgvSensorList.Location = new System.Drawing.Point(322, 130);
+            this.dgvSensorList.Name = "dgvSensorList";
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSensorList.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            this.dgvSensorList.RowHeadersVisible = false;
+            this.dgvSensorList.RowTemplate.Height = 24;
+            this.dgvSensorList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSensorList.Size = new System.Drawing.Size(539, 409);
+            this.dgvSensorList.TabIndex = 13;
             // 
             // lbSearch1
             // 
@@ -194,6 +318,18 @@
             this.tpTest.Text = "tpTest";
             this.tpTest.UseVisualStyleBackColor = true;
             // 
+            // btn_AlertTest
+            // 
+            this.btn_AlertTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btn_AlertTest.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.btn_AlertTest.Location = new System.Drawing.Point(743, 28);
+            this.btn_AlertTest.Name = "btn_AlertTest";
+            this.btn_AlertTest.Size = new System.Drawing.Size(108, 39);
+            this.btn_AlertTest.TabIndex = 17;
+            this.btn_AlertTest.Text = "警報測試";
+            this.btn_AlertTest.UseVisualStyleBackColor = false;
+            this.btn_AlertTest.Click += new System.EventHandler(this.btn_AlertTest_Click);
+            // 
             // lbdgv
             // 
             this.lbdgv.AutoSize = true;
@@ -239,41 +375,41 @@
             // 
             this.dgvHTData.AllowUserToResizeColumns = false;
             this.dgvHTData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dgvHTData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dgvHTData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle45;
             this.dgvHTData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvHTData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvHTData.BackgroundColor = System.Drawing.Color.White;
             this.dgvHTData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(109)))), ((int)(((byte)(158)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(255)))), ((int)(((byte)(197)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHTData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(109)))), ((int)(((byte)(158)))));
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(255)))), ((int)(((byte)(197)))));
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHTData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
             this.dgvHTData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHTData.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHTData.DefaultCellStyle = dataGridViewCellStyle47;
             this.dgvHTData.EnableHeadersVisualStyles = false;
             this.dgvHTData.Location = new System.Drawing.Point(37, 235);
             this.dgvHTData.Name = "dgvHTData";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHTData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHTData.RowHeadersDefaultCellStyle = dataGridViewCellStyle48;
             this.dgvHTData.RowHeadersVisible = false;
             this.dgvHTData.RowTemplate.Height = 24;
             this.dgvHTData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -288,6 +424,7 @@
             this.tbHum.ReadOnly = true;
             this.tbHum.Size = new System.Drawing.Size(159, 29);
             this.tbHum.TabIndex = 11;
+            this.tbHum.Text = "0";
             // 
             // lbHum
             // 
@@ -307,6 +444,7 @@
             this.tbTemp.ReadOnly = true;
             this.tbTemp.Size = new System.Drawing.Size(159, 29);
             this.tbTemp.TabIndex = 9;
+            this.tbTemp.Text = "0";
             // 
             // lbTemp
             // 
@@ -384,19 +522,106 @@
             // GetDataTime
             // 
             this.GetDataTime.Enabled = true;
+            this.GetDataTime.Interval = 50000;
             this.GetDataTime.Tick += new System.EventHandler(this.GetDataTime_Tick);
             // 
-            // btn_AlertTest
+            // lbName
             // 
-            this.btn_AlertTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btn_AlertTest.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.btn_AlertTest.Location = new System.Drawing.Point(743, 28);
-            this.btn_AlertTest.Name = "btn_AlertTest";
-            this.btn_AlertTest.Size = new System.Drawing.Size(108, 39);
-            this.btn_AlertTest.TabIndex = 17;
-            this.btn_AlertTest.Text = "警報測試";
-            this.btn_AlertTest.UseVisualStyleBackColor = false;
-            this.btn_AlertTest.Click += new System.EventHandler(this.btn_AlertTest_Click);
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.lbName.Location = new System.Drawing.Point(35, 162);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(115, 20);
+            this.lbName.TabIndex = 18;
+            this.lbName.Text = "名稱(訂閱主題)";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbName
+            // 
+            this.tbName.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbName.Location = new System.Drawing.Point(156, 153);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(120, 29);
+            this.tbName.TabIndex = 19;
+            // 
+            // tbLocation
+            // 
+            this.tbLocation.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbLocation.Location = new System.Drawing.Point(156, 194);
+            this.tbLocation.Name = "tbLocation";
+            this.tbLocation.Size = new System.Drawing.Size(120, 29);
+            this.tbLocation.TabIndex = 21;
+            // 
+            // lbLocation
+            // 
+            this.lbLocation.AutoSize = true;
+            this.lbLocation.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.lbLocation.Location = new System.Drawing.Point(61, 203);
+            this.lbLocation.Name = "lbLocation";
+            this.lbLocation.Size = new System.Drawing.Size(89, 20);
+            this.lbLocation.TabIndex = 20;
+            this.lbLocation.Text = "感測器位置";
+            this.lbLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbVendor
+            // 
+            this.tbVendor.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbVendor.Location = new System.Drawing.Point(156, 242);
+            this.tbVendor.Name = "tbVendor";
+            this.tbVendor.Size = new System.Drawing.Size(120, 29);
+            this.tbVendor.TabIndex = 23;
+            // 
+            // lbVendor
+            // 
+            this.lbVendor.AutoSize = true;
+            this.lbVendor.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.lbVendor.Location = new System.Drawing.Point(77, 251);
+            this.lbVendor.Name = "lbVendor";
+            this.lbVendor.Size = new System.Drawing.Size(73, 20);
+            this.lbVendor.TabIndex = 22;
+            this.lbVendor.Text = "製造廠商";
+            this.lbVendor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbstatus
+            // 
+            this.lbstatus.AutoSize = true;
+            this.lbstatus.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.lbstatus.Location = new System.Drawing.Point(77, 300);
+            this.lbstatus.Name = "lbstatus";
+            this.lbstatus.Size = new System.Drawing.Size(73, 20);
+            this.lbstatus.TabIndex = 24;
+            this.lbstatus.Text = "運作狀態";
+            this.lbstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // chbStatus
+            // 
+            this.chbStatus.AutoSize = true;
+            this.chbStatus.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.chbStatus.Location = new System.Drawing.Point(172, 296);
+            this.chbStatus.Name = "chbStatus";
+            this.chbStatus.Size = new System.Drawing.Size(60, 24);
+            this.chbStatus.TabIndex = 26;
+            this.chbStatus.Text = "關閉";
+            this.chbStatus.UseVisualStyleBackColor = true;
+            // 
+            // tbSearchFrequency
+            // 
+            this.tbSearchFrequency.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbSearchFrequency.Location = new System.Drawing.Point(172, 332);
+            this.tbSearchFrequency.Name = "tbSearchFrequency";
+            this.tbSearchFrequency.Size = new System.Drawing.Size(104, 29);
+            this.tbSearchFrequency.TabIndex = 28;
+            // 
+            // lbFrequency
+            // 
+            this.lbFrequency.AutoSize = true;
+            this.lbFrequency.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.lbFrequency.Location = new System.Drawing.Point(33, 341);
+            this.lbFrequency.Name = "lbFrequency";
+            this.lbFrequency.Size = new System.Drawing.Size(121, 20);
+            this.lbFrequency.TabIndex = 27;
+            this.lbFrequency.Text = "資料庫接收頻率";
+            this.lbFrequency.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // THSensor
             // 
@@ -407,6 +632,7 @@
             this.Name = "THSensor";
             this.Text = "溫濕度感測器";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.THSensor_FormClosing);
+            this.Load += new System.EventHandler(this.THSensor_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.panel1.ResumeLayout(false);
@@ -414,6 +640,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tpSearch.ResumeLayout(false);
             this.tpSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSensorList)).EndInit();
             this.tpReport.ResumeLayout(false);
             this.tpReport.PerformLayout();
             this.tpTest.ResumeLayout(false);
@@ -451,5 +678,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbdgv;
         private System.Windows.Forms.Button btn_AlertTest;
+        private System.Windows.Forms.DataGridView dgvSensorList;
+        private System.Windows.Forms.Button btnEditSensor;
+        private System.Windows.Forms.Button btnDeleteSensor;
+        private System.Windows.Forms.Button btnNewSensor;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbSearchFrequency;
+        private System.Windows.Forms.Label lbFrequency;
+        private System.Windows.Forms.CheckBox chbStatus;
+        private System.Windows.Forms.Label lbstatus;
+        private System.Windows.Forms.TextBox tbVendor;
+        private System.Windows.Forms.Label lbVendor;
+        private System.Windows.Forms.TextBox tbLocation;
+        private System.Windows.Forms.Label lbLocation;
     }
 }
