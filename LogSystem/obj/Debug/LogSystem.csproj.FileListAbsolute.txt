@@ -57,3 +57,15 @@ C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.dll
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.pdb
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\bin\Debug\LogSystem.dll.config
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\bin\Debug\LogSystem.dll
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\bin\Debug\LogSystem.pdb
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\bin\Debug\FormLogoClassLibrary.dll
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csprojAssemblyReference.cache
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.FrmCreate.resources
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.FrmLogin.resources
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csproj.GenerateResource.cache
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.dll
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.pdb

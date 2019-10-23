@@ -45,3 +45,9 @@ C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.cs
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.dll
 C:\Users\III\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.pdb
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\bin\Debug\ParkInfo.dll
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\bin\Debug\ParkInfo.pdb
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.csprojAssemblyReference.cache
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.dll
+D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.pdb
