@@ -235,3 +235,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkingManagement\obj\Debug\P
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkingManagement\obj\Debug\ParkingManagement.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkingManagement\obj\Debug\ParkingManagement.exe
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkingManagement\obj\Debug\ParkingManagement.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\ParkingManagement\obj\Debug\ParkingManagement.csproj.CoreCompileInputs.cache

@@ -74,3 +74,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\TemperatureHumiditySys\obj\De
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\TemperatureHumiditySys\obj\Debug\TemperatureHumiditySys.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\TemperatureHumiditySys\obj\Debug\TemperatureHumiditySys.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\TemperatureHumiditySys\obj\Debug\TemperatureHumiditySys.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\TemperatureHumiditySys\obj\Debug\TemperatureHumiditySys.csproj.CoreCompileInputs.cache

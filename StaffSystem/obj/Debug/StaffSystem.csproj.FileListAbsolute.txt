@@ -141,3 +141,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\StaffSystem\obj\Debug\StaffSy
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\StaffSystem\obj\Debug\StaffSystem.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\StaffSystem\obj\Debug\StaffSystem.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\StaffSystem\obj\Debug\StaffSystem.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\StaffSystem\obj\Debug\StaffSystem.csproj.CoreCompileInputs.cache

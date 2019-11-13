@@ -51,3 +51,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.c
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\ParkInfo\obj\Debug\ParkInfo.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\ParkInfo\obj\Debug\ParkInfo.csproj.CoreCompileInputs.cache

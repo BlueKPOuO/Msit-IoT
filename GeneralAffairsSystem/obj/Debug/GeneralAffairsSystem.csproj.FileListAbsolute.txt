@@ -180,3 +180,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\GeneralAffairsSystem\obj\Debu
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\GeneralAffairsSystem\obj\Debug\GeneralAffairsSystem.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\GeneralAffairsSystem\obj\Debug\GeneralAffairsSystem.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\GeneralAffairsSystem\obj\Debug\GeneralAffairsSystem.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\GeneralAffairsSystem\obj\Debug\GeneralAffairsSystem.csproj.CoreCompileInputs.cache

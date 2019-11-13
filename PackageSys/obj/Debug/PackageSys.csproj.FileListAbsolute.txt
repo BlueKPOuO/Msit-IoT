@@ -131,3 +131,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PackageSys\obj\Debug\PackageS
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PackageSys\obj\Debug\PackageSys.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PackageSys\obj\Debug\PackageSys.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PackageSys\obj\Debug\PackageSys.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\PackageSys\obj\Debug\PackageSys.csproj.CoreCompileInputs.cache

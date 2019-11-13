@@ -357,3 +357,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\BulletinBoard\obj\Debug\Bulle
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\BulletinBoard\obj\Debug\BulletinBoard.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\BulletinBoard\obj\Debug\BulletinBoard.exe
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\BulletinBoard\obj\Debug\BulletinBoard.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\BulletinBoard\obj\Debug\BulletinBoard.csproj.CoreCompileInputs.cache

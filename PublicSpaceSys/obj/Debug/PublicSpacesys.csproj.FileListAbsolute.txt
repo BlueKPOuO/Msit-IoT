@@ -212,3 +212,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PublicSpaceSys\obj\Debug\Publ
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PublicSpaceSys\obj\Debug\PublicSpaceSys.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PublicSpaceSys\obj\Debug\PublicSpacesys.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\PublicSpaceSys\obj\Debug\PublicSpacesys.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\PublicSpaceSys\obj\Debug\PublicSpaceSys.csproj.CoreCompileInputs.cache

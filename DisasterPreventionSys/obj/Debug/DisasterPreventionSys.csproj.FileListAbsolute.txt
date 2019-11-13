@@ -81,3 +81,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Deb
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.csproj.CoreCompileInputs.cache

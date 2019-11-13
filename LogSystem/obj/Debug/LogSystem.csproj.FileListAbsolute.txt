@@ -69,3 +69,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.dll
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\LogSystem\obj\Debug\LogSystem.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\LogSystem\obj\Debug\LogSystem.csproj.CoreCompileInputs.cache

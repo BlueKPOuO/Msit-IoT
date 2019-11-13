@@ -351,3 +351,4 @@ D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.c
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.csproj.CopyComplete
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.exe
 D:\Users\User\Documents\GitHub\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\MainForm\obj\Debug\MainForm.csproj.CoreCompileInputs.cache
