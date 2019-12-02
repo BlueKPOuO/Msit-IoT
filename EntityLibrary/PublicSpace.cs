@@ -22,6 +22,7 @@ namespace EntityLibrary
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         public string Reason { get; set; }
+        public Nullable<System.DateTime> DateTimeNow { get; set; }
     
         public virtual Location Location { get; set; }
         public virtual ResidentDataTable ResidentDataTable { get; set; }

@@ -126,8 +126,15 @@ namespace TemperatureHumiditySys
             string msg = Encoding.UTF8.GetString(e.Message);
             if (msg != null && msg != "")
             {
-                tbTemp.Text = msg.Substring(15, 5);
-                tbHum.Text = msg.Substring(32, 5);
+                try
+                {
+                    tbTemp.Text = msg.Substring(15, 5);
+                    tbHum.Text = msg.Substring(32, 5);
+                }
+                catch
+                {
+
+                }
             }
             if (old_hum != null && old_hum != "" && old_temp != null && old_temp != "") 
             { 
@@ -141,7 +148,6 @@ namespace TemperatureHumiditySys
         private void Iot_Alert()
         {
             MessageBox.Show($"{subTopic}疑似發生火災!該處連續出現多筆高溫數據!!");
-
         }
 
         static bool Check(string IPStr, int Port, int Timeout)

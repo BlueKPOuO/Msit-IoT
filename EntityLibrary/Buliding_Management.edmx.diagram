@@ -42,10 +42,18 @@
         <EntityTypeShape EntityType="Buliding_ManagementModel.HTDataTable" Width="1.5" PointX="13.5" PointY="8.125" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.HumiTemperSenser" Width="1.5" PointX="11.25" PointY="7.75" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.SensorTable" Width="1.5" PointX="9" PointY="6.5" />
-        <EntityTypeShape EntityType="Buliding_ManagementModel.SmokeSenser" Width="1.5" PointX="11.25" PointY="4.5" />
-        <EntityTypeShape EntityType="Buliding_ManagementModel.SmokeSenserData" Width="1.5" PointX="13.5" PointY="4.875" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_HTDataTable_HumiTemperSenser" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_HumiTemperSenser_SensorTable" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.DistanceData" Width="1.5" PointX="13.5" PointY="15.375" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.DistanceSensor" Width="1.5" PointX="11.25" PointY="15" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ManagementFee" Width="1.5" PointX="5.25" PointY="30" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.IoTAlert" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_DistanceData_DistanceSensor" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_DistanceSensor_SensorTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_ManagementFee_ResidentDataTable" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.AllSensorTable" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.GasSenser" Width="1.5" PointX="11.25" PointY="11.25" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.GasSenserData" Width="1.5" PointX="13.5" PointY="11.625" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_SmokeSenser_SensorTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_煙霧偵測器數值_煙霧偵測器" />
       </Diagram>

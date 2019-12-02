@@ -18,7 +18,8 @@ namespace EntityLibrary
         public SensorTable()
         {
             this.HumiTemperSenser = new HashSet<HumiTemperSenser>();
-            this.SmokeSenser = new HashSet<SmokeSenser>();
+            this.DistanceSensor = new HashSet<DistanceSensor>();
+            this.GasSenser = new HashSet<GasSenser>();
         }
     
         public string SensorName { get; set; }
@@ -27,6 +28,8 @@ namespace EntityLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HumiTemperSenser> HumiTemperSenser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SmokeSenser> SmokeSenser { get; set; }
+        public virtual ICollection<DistanceSensor> DistanceSensor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GasSenser> GasSenser { get; set; }
     }
 }

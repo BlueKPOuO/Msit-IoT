@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllSensorTable.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
     <Compile Include="Buliding_Management.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,6 +79,12 @@
     <Compile Include="BulletinBoard.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
+    <Compile Include="DistanceData.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DistanceSensor.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
     <Compile Include="EquipFix.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
@@ -83,6 +92,12 @@
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="EquipReservation.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GasSenser.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GasSenserData.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="History.cs">
@@ -97,7 +112,13 @@
     <Compile Include="HumiTemperSenser.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
+    <Compile Include="IoTAlert.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
     <Compile Include="Location.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementFee.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="PackageCompany.cs">
@@ -123,12 +144,6 @@
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="ShiftTable.cs">
-      <DependentUpon>Buliding_Management.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmokeSenser.cs">
-      <DependentUpon>Buliding_Management.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmokeSenserData.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
     <Compile Include="StaffDataTable.cs">

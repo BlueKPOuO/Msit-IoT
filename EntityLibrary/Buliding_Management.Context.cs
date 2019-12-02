@@ -47,8 +47,13 @@ namespace EntityLibrary
         public virtual DbSet<HTDataTable> HTDataTable { get; set; }
         public virtual DbSet<HumiTemperSenser> HumiTemperSenser { get; set; }
         public virtual DbSet<SensorTable> SensorTable { get; set; }
-        public virtual DbSet<SmokeSenser> SmokeSenser { get; set; }
-        public virtual DbSet<SmokeSenserData> SmokeSenserData { get; set; }
+        public virtual DbSet<DistanceData> DistanceData { get; set; }
+        public virtual DbSet<DistanceSensor> DistanceSensor { get; set; }
+        public virtual DbSet<ManagementFee> ManagementFee { get; set; }
+        public virtual DbSet<IoTAlert> IoTAlert { get; set; }
+        public virtual DbSet<AllSensorTable> AllSensorTable { get; set; }
+        public virtual DbSet<GasSenser> GasSenser { get; set; }
+        public virtual DbSet<GasSenserData> GasSenserData { get; set; }
     
         public virtual int CreateUser(ObjectParameter iD, string staffID, string userName, byte[] password, string salted, string email)
         {

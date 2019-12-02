@@ -29,34 +29,52 @@ namespace ControlLibrary
         public string userName { get; set; } = "";
         public string password { get; set; } = "";
         string all = "#";
+        /*
         public enum topic
         {
-          [Description("home_dht")] HT,
-          [Description("US_01")] Distance ,
-          [Description("MQ5_01")] Gas,
-          [Description("#")] all
+            [Description("home_dht")] HT,
+            [Description("US_01")] Distance ,
+            [Description("MQ5_01")] Gas,
+            [Description("#")] all
         }
-        public topic subTopic { get; set; } = topic.HT;
+        */
+        public string subTopic { get; set; } = "#";
         //public string subTopic = "home_dht";//全訂閱# 溫濕度home_dht 聲納距離US_01 瓦斯MQ5_01 //Alarm_01 relay topic
 
         string temp = "";
         string hum = "";
+        string gas = "";
+        string distance = "";
 
         void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            switch (subTopic)
-            {
-                default:
-                    break;
-            }
             string old_temp = temp;
             string old_hum = hum;
-
             string msg = Encoding.UTF8.GetString(e.Message);
             if (msg != null && msg != "")
             {
-                temp = msg.Substring(15, 5);
-                hum = msg.Substring(32, 5);
+                try
+                {
+                    if (msg.IndexOf("temperature") > 0)
+                    {
+                        temp = msg.Substring(15, 5);
+                        hum = msg.Substring(32, 5);
+                    }
+                    else if (msg.IndexOf("Gas Value") > 0)
+                    {
+                        gas = msg.Substring(13, 4);
+                        gas = gas.Trim();
+                    }
+                    else if (msg.IndexOf("Distance") > 0)
+                    {
+                        distance = msg.Substring(12, 4);
+                        distance = distance.Trim();
+                    }
+                }
+                catch
+                {
+
+                }
             }
 
         }
@@ -111,20 +129,81 @@ namespace ControlLibrary
                         Connect();
                         client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
                         byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE };
-                        client.Subscribe(new string[] { GetDescription(subTopic) }, qosLevels);
+                        client.Subscribe(new string[] { subTopic }, qosLevels);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("連接不到IoT系統,請確認連線後再嘗試");
+                    MessageBox.Show("連接不到IoT系統,請確認連線");
                     return;
                 }
-            }/*
+            }
+            
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            var q = from a in db.HumiTemperSenser
-                    where a.SensorID == GetDescription(subTopic)
-                    select a.Frequency;
-            timer.Interval = Convert.ToInt32(q.First().ToString()) * 1000 * 60;*/
+            var q = from a in db.AllSensorTable
+                    select new { a.SensorID,a.Frequency,a.CategoryID };
+            for(int i = 0; i < q.Count(); i++)
+            {
+                Timer a = new Timer();
+                a.Enabled = true;
+                a.Interval = Convert.ToInt32((q.Skip(i).First().Frequency * 1000 * 60).ToString());
+                a.Tag = q.Skip(i).First().SensorID;
+                switch (q.Skip(i).First().CategoryID)
+                {
+                    case "HT":
+                        a.Tick += HTDataToDB;
+                        break;
+                    case "G":
+                        a.Tick += GasDataToDB;
+                        break;
+                    case "DS":
+                        a.Tick += DistanceToDB;
+                        break;
+                }
+            }
+        }
+
+        private void DistanceToDB(object sender, EventArgs e)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+            DistanceData z = new DistanceData
+            {
+                SensorID = ((Timer)sender).Tag.ToString(),
+                Time = Convert.ToDateTime(now),
+                Distance = int.Parse(distance)
+            };
+            db.DistanceData.Add(z);
+            db.SaveChanges();
+        }
+
+        private void GasDataToDB(object sender, EventArgs e)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+            GasSenserData y = new GasSenserData
+            {
+                SensorID = ((Timer)sender).Tag.ToString(),
+                Time = Convert.ToDateTime(now),
+                Gasvalue = double.Parse(gas)
+            };
+            db.GasSenserData.Add(y);
+            db.SaveChanges();
+        }
+
+        private void HTDataToDB(object sender, EventArgs e)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+            HTDataTable x = new HTDataTable
+            {
+                SensorID = ((Timer)sender).Tag.ToString(),
+                Time = Convert.ToDateTime(now),
+                Temperature = Convert.ToDouble(temp),
+                Humidity = Convert.ToDouble(hum)
+            };
+            db.HTDataTable.Add(x);
+            db.SaveChanges();
         }
 
         public string GetDescription(Enum value)
@@ -133,30 +212,30 @@ namespace ControlLibrary
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : value.ToString();
         }
-
+        /*
         private void timer_Tick(object sender, EventArgs e)
         {
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
             HTDataTable x = new HTDataTable
             {
-                SensorID = GetDescription(subTopic),
+                SensorID = "home_dht",
                 Time = Convert.ToDateTime(now),
                 Temperature = Convert.ToDouble(temp),
                 Humidity = Convert.ToDouble(hum)
             };
-            //db.HTDataTable.Add(x);
-            //db.SaveChanges();
-            /*
-            var q = from a in db.HTDataTable
-                    select new
-                    {
-                        a.SensorID,
-                        a.Time,
-                        a.Temperature,
-                        a.Humidity
-                    };
-            dgvHTData.DataSource = q.ToList();*/
-        }
+            GasSenserData y = new GasSenserData
+            {
+                SensorID = "MQ5_01",
+                Time = Convert.ToDateTime(now),
+                Gasvalue = double.Parse(gas)
+            };
+            DistanceData z = new DistanceData
+            {
+                SensorID = "",
+                Time = Convert.ToDateTime(now),
+                Distance = int.Parse(distance)
+            };
+        }*/
     }
 }

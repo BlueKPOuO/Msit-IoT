@@ -14,6 +14,26 @@
     <Property Name="annAnnex" Type="varbinary(max)" />
     <Property Name="annFilename" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="DistanceData">
+    <Key>
+      <PropertyRef Name="SensorID" />
+      <PropertyRef Name="Time" />
+    </Key>
+    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="Distance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistanceSensor">
+    <Key>
+      <PropertyRef Name="SensorID" />
+    </Key>
+    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Frequency" Type="float" />
+    <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
   <EntityType Name="EquipFix">
     <Key>
       <PropertyRef Name="EquipmentFixID" />
@@ -47,6 +67,26 @@
     <Property Name="ResidentID" Type="int" Nullable="false" />
     <Property Name="ReturnDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="GasSenser">
+    <Key>
+      <PropertyRef Name="SensorID" />
+    </Key>
+    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Frequency" Type="float" />
+    <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GasSenserData">
+    <Key>
+      <PropertyRef Name="SensorID" />
+      <PropertyRef Name="Time" />
+    </Key>
+    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="Gasvalue" Type="float" Nullable="false" />
+  </EntityType>
   <EntityType Name="History">
     <Key>
       <PropertyRef Name="ResidentID" />
@@ -55,7 +95,7 @@
     </Key>
     <Property Name="ResidentID" Type="int" Nullable="false" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="seq" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="seq" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="barrierName" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="LocationID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
@@ -96,12 +136,36 @@
     <Property Name="Frequency" Type="float" />
     <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
   </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'Buliding_Management.dbo.IoTAlert' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="IoTAlert">
+    <Key>
+      <PropertyRef Name="Place" />
+      <PropertyRef Name="Alert" />
+    </Key>
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Alert" Type="bit" Nullable="false" />
+    <Property Name="PS" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Location">
     <Key>
       <PropertyRef Name="LocationID" />
     </Key>
     <Property Name="LocationID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="Location" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="是否出借" Type="bit" />
+    <Property Name="Photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ManagementFee">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResidentID" Type="int" Nullable="false" />
+    <Property Name="Fee" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Month" Type="int" Nullable="false" />
+    <Property Name="PaidDate" Type="date" />
   </EntityType>
   <EntityType Name="PackageCompany">
     <Key>
@@ -121,6 +185,7 @@
     <Property Name="ReceiverID" Type="int" />
     <Property Name="Sign" Type="bit" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SignedDate" Type="date" />
   </EntityType>
   <EntityType Name="ParkingManagement">
     <Key>
@@ -142,23 +207,26 @@
     </Key>
     <Property Name="ResidentID" Type="int" Nullable="false" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="seq" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="seq" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="barrierName" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="LocationID" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateTimeNow" Type="datetime" />
   </EntityType>
   <EntityType Name="ResidentDataTable">
     <Key>
       <PropertyRef Name="ResidentID" />
     </Key>
-    <Property Name="ResidentID" Type="int" Nullable="false" />
+    <Property Name="ResidentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ResidentName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ResidentPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="ResidentIDNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="CommunityAddress" Type="nvarchar" MaxLength="50" />
     <Property Name="ResidentLINE ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Living" Type="bit" Nullable="false" />
+    <Property Name="img" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="ReturnPackage">
     <Key>
@@ -171,6 +239,7 @@
     <Property Name="ReturneeID" Type="int" />
     <Property Name="Sign" Type="bit" />
     <Property Name="StaffID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SignedDate" Type="date" />
   </EntityType>
   <EntityType Name="SensorTable">
     <Key>
@@ -187,26 +256,6 @@
     <Property Name="StartTime" Type="time" Precision="0" />
     <Property Name="EndTime" Type="time" Precision="0" />
   </EntityType>
-  <EntityType Name="SmokeSenser">
-    <Key>
-      <PropertyRef Name="SensorID" />
-    </Key>
-    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="place" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Frequency" Type="float" />
-    <Property Name="CategoryID" Type="nvarchar" MaxLength="5" />
-  </EntityType>
-  <EntityType Name="SmokeSenserData">
-    <Key>
-      <PropertyRef Name="SensorID" />
-      <PropertyRef Name="Detectiondate" />
-    </Key>
-    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="Detectiondate" Type="datetime" Nullable="false" />
-    <Property Name="Smokevalue" Type="float" Nullable="false" />
-  </EntityType>
   <EntityType Name="StaffDataTable">
     <Key>
       <PropertyRef Name="StaffID" />
@@ -219,6 +268,7 @@
     <Property Name="StaffLINE ID" Type="nvarchar" MaxLength="50" />
     <Property Name="OnWork" Type="bit" Nullable="false" />
     <Property Name="ShiftID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="img" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="UserAccount">
     <Key>
@@ -229,6 +279,22 @@
     <Property Name="Password" Type="varbinary(max)" Nullable="false" />
     <Property Name="salted" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="email" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'Buliding_Management.dbo.AllSensorTable' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="AllSensorTable">
+    <Key>
+      <PropertyRef Name="SensorID" />
+      <PropertyRef Name="Place" />
+      <PropertyRef Name="Vendor" />
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="SensorID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Frequency" Type="float" />
+    <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
   </EntityType>
   <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'Buliding_Management.dbo.StaffDataWorkTime' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
@@ -259,6 +325,30 @@
       </Principal>
       <Dependent Role="BulletinBoard">
         <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistanceData_DistanceSensor">
+    <End Role="DistanceSensor" Type="Self.DistanceSensor" Multiplicity="1" />
+    <End Role="DistanceData" Type="Self.DistanceData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistanceSensor">
+        <PropertyRef Name="SensorID" />
+      </Principal>
+      <Dependent Role="DistanceData">
+        <PropertyRef Name="SensorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistanceSensor_SensorTable">
+    <End Role="SensorTable" Type="Self.SensorTable" Multiplicity="1" />
+    <End Role="DistanceSensor" Type="Self.DistanceSensor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SensorTable">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="DistanceSensor">
+        <PropertyRef Name="CategoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -343,6 +433,18 @@
       </Principal>
       <Dependent Role="HumiTemperSenser">
         <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ManagementFee_ResidentDataTable">
+    <End Role="ResidentDataTable" Type="Self.ResidentDataTable" Multiplicity="1" />
+    <End Role="ManagementFee" Type="Self.ManagementFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResidentDataTable">
+        <PropertyRef Name="ResidentID" />
+      </Principal>
+      <Dependent Role="ManagementFee">
+        <PropertyRef Name="ResidentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -455,13 +557,13 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SmokeSenser_SensorTable">
-    <End Role="SensorTable" Type="Self.SensorTable" Multiplicity="0..1" />
-    <End Role="SmokeSenser" Type="Self.SmokeSenser" Multiplicity="*" />
+    <End Role="SensorTable" Type="Self.SensorTable" Multiplicity="1" />
+    <End Role="GasSenser" Type="Self.GasSenser" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SensorTable">
         <PropertyRef Name="CategoryID" />
       </Principal>
-      <Dependent Role="SmokeSenser">
+      <Dependent Role="GasSenser">
         <PropertyRef Name="CategoryID" />
       </Dependent>
     </ReferentialConstraint>
@@ -491,13 +593,13 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_煙霧偵測器數值_煙霧偵測器">
-    <End Role="SmokeSenser" Type="Self.SmokeSenser" Multiplicity="1" />
-    <End Role="SmokeSenserData" Type="Self.SmokeSenserData" Multiplicity="*" />
+    <End Role="GasSenser" Type="Self.GasSenser" Multiplicity="1" />
+    <End Role="GasSenserData" Type="Self.GasSenserData" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="SmokeSenser">
+      <Principal Role="GasSenser">
         <PropertyRef Name="SensorID" />
       </Principal>
-      <Dependent Role="SmokeSenserData">
+      <Dependent Role="GasSenserData">
         <PropertyRef Name="SensorID" />
       </Dependent>
     </ReferentialConstraint>
@@ -543,14 +645,19 @@
   </Function>
   <EntityContainer Name="Buliding_ManagementModelStoreContainer">
     <EntitySet Name="BulletinBoard" EntityType="Self.BulletinBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistanceData" EntityType="Self.DistanceData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistanceSensor" EntityType="Self.DistanceSensor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EquipFix" EntityType="Self.EquipFix" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EquipReservation" EntityType="Self.EquipReservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GasSenser" EntityType="Self.GasSenser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GasSenserData" EntityType="Self.GasSenserData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ManagementFee" EntityType="Self.ManagementFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PackageTable" EntityType="Self.PackageTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParkingManagement" EntityType="Self.ParkingManagement" Schema="dbo" store:Type="Tables" />
@@ -559,10 +666,25 @@
     <EntitySet Name="ReturnPackage" EntityType="Self.ReturnPackage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SensorTable" EntityType="Self.SensorTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmokeSenser" EntityType="Self.SmokeSenser" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmokeSenserData" EntityType="Self.SmokeSenserData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [IoTAlert].[Place] AS [Place], 
+    [IoTAlert].[Alert] AS [Alert], 
+    [IoTAlert].[PS] AS [PS]
+    FROM [dbo].[IoTAlert] AS [IoTAlert]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AllSensorTable" EntityType="Self.AllSensorTable" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AllSensorTable].[SensorID] AS [SensorID], 
+    [AllSensorTable].[Place] AS [Place], 
+    [AllSensorTable].[Vendor] AS [Vendor], 
+    [AllSensorTable].[Status] AS [Status], 
+    [AllSensorTable].[Frequency] AS [Frequency], 
+    [AllSensorTable].[CategoryID] AS [CategoryID]
+    FROM [dbo].[AllSensorTable] AS [AllSensorTable]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="StaffDataWorkTime" EntityType="Self.StaffDataWorkTime" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [StaffDataWorkTime].[StaffID] AS [StaffID], 
@@ -579,6 +701,14 @@
     <AssociationSet Name="FK_BulletinBoard_ShaffDataTable" Association="Self.FK_BulletinBoard_ShaffDataTable">
       <End Role="StaffDataTable" EntitySet="StaffDataTable" />
       <End Role="BulletinBoard" EntitySet="BulletinBoard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistanceData_DistanceSensor" Association="Self.FK_DistanceData_DistanceSensor">
+      <End Role="DistanceSensor" EntitySet="DistanceSensor" />
+      <End Role="DistanceData" EntitySet="DistanceData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistanceSensor_SensorTable" Association="Self.FK_DistanceSensor_SensorTable">
+      <End Role="SensorTable" EntitySet="SensorTable" />
+      <End Role="DistanceSensor" EntitySet="DistanceSensor" />
     </AssociationSet>
     <AssociationSet Name="FK_EquipFix_Equipment" Association="Self.FK_EquipFix_Equipment">
       <End Role="Equipment" EntitySet="Equipment" />
@@ -607,6 +737,10 @@
     <AssociationSet Name="FK_HumiTemperSenser_SensorTable" Association="Self.FK_HumiTemperSenser_SensorTable">
       <End Role="SensorTable" EntitySet="SensorTable" />
       <End Role="HumiTemperSenser" EntitySet="HumiTemperSenser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ManagementFee_ResidentDataTable" Association="Self.FK_ManagementFee_ResidentDataTable">
+      <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+      <End Role="ManagementFee" EntitySet="ManagementFee" />
     </AssociationSet>
     <AssociationSet Name="FK_PackageTable_PackageCompany" Association="Self.FK_PackageTable_PackageCompany">
       <End Role="PackageCompany" EntitySet="PackageCompany" />
@@ -646,7 +780,7 @@
     </AssociationSet>
     <AssociationSet Name="FK_SmokeSenser_SensorTable" Association="Self.FK_SmokeSenser_SensorTable">
       <End Role="SensorTable" EntitySet="SensorTable" />
-      <End Role="SmokeSenser" EntitySet="SmokeSenser" />
+      <End Role="GasSenser" EntitySet="GasSenser" />
     </AssociationSet>
     <AssociationSet Name="FK_StaffDataTable_ShiftTable" Association="Self.FK_StaffDataTable_ShiftTable">
       <End Role="ShiftTable" EntitySet="ShiftTable" />
@@ -657,8 +791,8 @@
       <End Role="UserAccount" EntitySet="UserAccount" />
     </AssociationSet>
     <AssociationSet Name="FK_煙霧偵測器數值_煙霧偵測器" Association="Self.FK_煙霧偵測器數值_煙霧偵測器">
-      <End Role="SmokeSenser" EntitySet="SmokeSenser" />
-      <End Role="SmokeSenserData" EntitySet="SmokeSenserData" />
+      <End Role="GasSenser" EntitySet="GasSenser" />
+      <End Role="GasSenserData" EntitySet="GasSenserData" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
