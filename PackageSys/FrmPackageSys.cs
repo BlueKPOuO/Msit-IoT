@@ -55,7 +55,7 @@ namespace PackageSys
                 收貨編號 = emp.PackageID,
                 收件日期 = emp.PackageArrivalDate,
                 貨運公司 = emp.PackageCompanyID,
-                收件姓名 = emp.Receiver,                
+                收件人ID = emp.ReceiverID.ToString(),                
                 簽收 = emp.Sign.Value,
                 警衛 = emp.StaffID
             });
@@ -81,7 +81,7 @@ namespace PackageSys
                 退貨編號 = emp.ReturnDataID,
                 收件日期 = emp.ReturnArrivalDate,
                 貨運公司 = emp.ReturnCompanyID,
-                收件姓名 = emp.Returnee,                
+                退件人ID = emp.ReturneeID.ToString(),                
                 簽收 = emp.Sign.Value,
                 警衛 = emp.StaffID
             });
@@ -188,12 +188,12 @@ namespace PackageSys
 
             Buliding_ManagementEntities shi = new Buliding_ManagementEntities();
             tabControl1.SelectedIndex = 1;
-            var q = shi.PackageTable.Where(r => r.Sign == false && r.Receiver == this.comboBox11.Text).Select(emp => new
+            var q = shi.PackageTable.Where(r => r.Sign == false && r.ResidentDataTable.ResidentName == this.comboBox11.Text).Select(emp => new
             {
                 收貨編號 = emp.PackageID,
                 收件日期 = emp.PackageArrivalDate,
                 貨運公司 = emp.PackageCompanyID,
-                收件姓名 = emp.Receiver,
+                收件ID = emp.ReceiverID,
                 簽收 = emp.Sign.Value,
                 警衛 = emp.StaffID
             });
@@ -301,12 +301,12 @@ namespace PackageSys
 
             Buliding_ManagementEntities shi = new Buliding_ManagementEntities();
             tabControl1.SelectedIndex = 3;
-            var q = shi.ReturnPackage.Where(r => r.Sign == false && r.Returnee == this.comboBox14.Text).Select(emp => new
+            var q = shi.ReturnPackage.Where(r => r.Sign == false && r.ResidentDataTable.ResidentName == this.comboBox14.Text).Select(emp => new
             {
                 退貨編號 = emp.ReturnDataID,
                 收件日期 = emp.ReturnArrivalDate,
                 貨運公司 = emp.ReturnCompanyID,
-                收件姓名 = emp.Returnee,
+                收件ID = emp.ReturneeID,
                 簽收 = emp.Sign.Value,
                 警衛 = emp.StaffID
             });
