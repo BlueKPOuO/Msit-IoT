@@ -17,5 +17,6 @@ namespace EntityLibrary
         public string Place { get; set; }
         public bool Alert { get; set; }
         public string PS { get; set; }
+        public int SN { get; set; }
     }
 }

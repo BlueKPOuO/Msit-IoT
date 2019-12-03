@@ -22,28 +22,5 @@ namespace MainForm.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int rid {
-            get {
-                return ((int)(this["rid"]));
-            }
-            set {
-                this["rid"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::ParkInfomation.ParkInfo CarIn {
-            get {
-                return ((global::ParkInfomation.ParkInfo)(this["CarIn"]));
-            }
-            set {
-                this["CarIn"] = value;
-            }
-        }
     }
 }

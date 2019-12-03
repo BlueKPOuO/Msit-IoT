@@ -26,14 +26,14 @@ namespace TemperatureHumiditySys
             cbSensorID.DataSource = db.HumiTemperSenser.Select(p => p.SensorID).ToList();
             
         }
-
+        
         private MqttClient client;
         public string brokerHostname = "192.168.8.101";
         public int brokerPort = 1883;
         public string userName = "";
         public string password = "";
-
-        static string subTopic = "";//全訂閱# 溫濕度home_dht 聲納距離US_01 瓦斯MQ5_01 //Alarm_01 relay topic
+        
+        static string subTopic = "home_dht";//全訂閱# 溫濕度home_dht 聲納距離US_01 瓦斯MQ5_01 //Alarm_01 relay topic
         static string subTopic2 = "MQ5_01";
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -70,59 +70,31 @@ namespace TemperatureHumiditySys
 
         private void cbSensorID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbSensorID.SelectedItem == null || cbSensorID.SelectedItem == "") return;
-            try
+            if (cbSensorID.SelectedItem == null || cbSensorID.SelectedItem.ToString() == "") return;
+            /*try
             {
                 client.Disconnect();
             }
-            catch { }
-            subTopic = Convert.ToString(cbSensorID.SelectedItem); 
-            if (brokerHostname != null && userName != null && password != null)
-            {
-                Connect();
-                client = new MqttClient(brokerHostname);
-                if (Check(brokerHostname, brokerPort, 1000))
-                {
-                    if (brokerHostname != null && userName != null && password != null)
-                    {
-                        Connect();
-                        client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
-                        byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE };
-                        client.Subscribe(new string[] { subTopic }, qosLevels);
-
-                        Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-                        var q = from a in db.HumiTemperSenser
-                                where a.SensorID == subTopic
-                                select a.Frequency;
-                        tbFrequency.Text = q.First().ToString();
-                        GetDataTime.Interval = Convert.ToInt32(tbFrequency.Text) * 1000 * 60;
-                        //匯入資料到datagridview
-                        var qq = from a in db.HTDataTable
-                                 where a.SensorID == subTopic
-                                 select new
-                                 {
-                                    a.SensorID,
-                                    a.Time,
-                                    a.Temperature,
-                                    a.Humidity
-                                 };
-                        dgvHTData.DataSource = qq.ToList();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("連接不到IoT系統,請確認連線後再嘗試");
-                    return;
-                }
-            }
+            catch { }*/
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            var qq = from a in db.HTDataTable
+                     where a.SensorID == subTopic
+                     select new
+                     {
+                         a.SensorID,
+                         a.Time,
+                         a.Temperature,
+                         a.Humidity
+                     };
+            dgvHTData.DataSource = qq.ToList();
+            var fre = db.HumiTemperSenser.Where(n => n.SensorID == subTopic).First().Frequency;
+            tbFrequency.Text = fre.ToString();
+            
 
         }
-
+        
         void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            string old_temp = tbTemp.Text;
-            string old_hum = tbHum.Text;
-
             string msg = Encoding.UTF8.GetString(e.Message);
             if (msg != null && msg != "")
             {
@@ -136,20 +108,20 @@ namespace TemperatureHumiditySys
 
                 }
             }
-            if (old_hum != null && old_hum != "" && old_temp != null && old_temp != "") 
+            /*if (old_hum != null && old_hum != "" && old_temp != null && old_temp != "") 
             { 
                 if (Convert.ToDouble(old_temp) > 80 && Convert.ToDouble(tbTemp.Text) > 80)
                 {
                     Iot_Alert();
                 }
-            }
+            }*/
         }
-
+        /*
         private void Iot_Alert()
         {
             MessageBox.Show($"{subTopic}疑似發生火災!該處連續出現多筆高溫數據!!");
         }
-
+        */
         static bool Check(string IPStr, int Port, int Timeout)
         {
             bool success = false;
@@ -161,7 +133,7 @@ namespace TemperatureHumiditySys
             catch { }
             return success;
         }
-
+        
         string error = "No Error";
 
         private void Connect()
@@ -181,20 +153,10 @@ namespace TemperatureHumiditySys
                 error = "Connection error: " + e.ToString();
             }
         }
-
+        
         private void GetDataTime_Tick(object sender, EventArgs e)
         {
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
-            HTDataTable x = new HTDataTable
-            {
-                SensorID = subTopic,
-                Time = Convert.ToDateTime(now),
-                Temperature = Convert.ToDouble(tbTemp.Text),
-                Humidity = Convert.ToDouble(tbHum.Text)
-            };
-            db.HTDataTable.Add(x);
-            db.SaveChanges();
 
             var q = from a in db.HTDataTable
                     select new
@@ -206,20 +168,21 @@ namespace TemperatureHumiditySys
                     };
             dgvHTData.DataSource = q.ToList();
         }
-
+        
         private void THSensor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            client.Disconnect();
+            if(client!=null)
+                client.Disconnect();
         }
-
-        private void btn_AlertTest_Click(object sender, EventArgs e)
+        
+        async private void btn_AlertTest_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 10; i++)
             {//溫度待填回傳字串進去
-                Publish("home_dht", "{\"temperature\":90.00,\"humidity\":00.00}", 2);
+                await Task.Run(()=> Publish("home_dht", "{\"temperature\":95.00,\"humidity\":00.00}", 2));
             }
         }
-
+        
         private void Publish(string _topic, string msg, int Qos)
         {
             switch (Qos)
@@ -314,6 +277,27 @@ namespace TemperatureHumiditySys
         private void THSensor_Load(object sender, EventArgs e)
         {
             Refresh_Method();
+
+            if (brokerHostname != null && userName != null && password != null)
+            {
+                Connect();
+                client = new MqttClient(brokerHostname);
+                if (Check(brokerHostname, brokerPort, 1000))
+                {
+                    if (brokerHostname != null && userName != null && password != null)
+                    {
+                        Connect();
+                        client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived;
+                        byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE };
+                        client.Subscribe(new string[] { subTopic }, qosLevels);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("連接不到IoT系統,請確認連線後再嘗試");
+                    return;
+                }
+            }
         }
     }
 }

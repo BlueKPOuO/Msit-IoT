@@ -35,7 +35,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "IoTGetData";
+            this.Size = new System.Drawing.Size(74, 72);
             this.Load += new System.EventHandler(this.IoTGetData_Load);
+            this.Leave += new System.EventHandler(this.IoTGetData_Leave);
             this.ResumeLayout(false);
 
         }

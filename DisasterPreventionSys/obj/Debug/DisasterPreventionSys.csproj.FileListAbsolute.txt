@@ -21,7 +21,6 @@ C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\obj\Debug
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.pdb
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.dll
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.pdb
-C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\M2Mqtt.Net.dll
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityLibrary.dll
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\EntityFramework.dll
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\TemperatureHumiditySys.dll.config
@@ -103,3 +102,4 @@ C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.csproj.CopyComplete
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.dll
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\DisasterPreventionSys\obj\Debug\DisasterPreventionSys.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\DisasterPreventionSys\bin\Debug\M2Mqtt.Net.dll

@@ -37,6 +37,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.GetAlert = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,6 +183,12 @@
             this.button6.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.button6.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
+            // GetAlert
+            // 
+            this.GetAlert.Enabled = true;
+            this.GetAlert.Interval = 500;
+            this.GetAlert.Tick += new System.EventHandler(this.GetAlert_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -218,6 +225,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Timer GetAlert;
     }
 }
 

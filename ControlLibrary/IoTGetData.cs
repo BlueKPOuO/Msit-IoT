@@ -18,9 +18,28 @@ namespace ControlLibrary
 {
     public partial class IoTGetData : UserControl
     {
+        public bool IsDesignerHosted
+        {
+            get
+            {
+                Control ctrl = this;
+                while (((ctrl == null) == false))
+                {
+                    if ((((ctrl.Site) == null) == false) && ctrl.Site.DesignMode)
+                    {
+                        return true;
+                    }
+                    ctrl = ctrl.Parent;
+                }
+                return false;
+            }
+        }
         public IoTGetData()
         {
-            InitializeComponent();
+            if (true)
+            {
+                InitializeComponent();
+            }
         }
 
         private MqttClient client;
@@ -28,7 +47,6 @@ namespace ControlLibrary
         public int brokerPort { get; set; } = 1883;
         public string userName { get; set; } = "";
         public string password { get; set; } = "";
-        string all = "#";
         /*
         public enum topic
         {
@@ -41,10 +59,10 @@ namespace ControlLibrary
         public string subTopic { get; set; } = "#";
         //public string subTopic = "home_dht";//全訂閱# 溫濕度home_dht 聲納距離US_01 瓦斯MQ5_01 //Alarm_01 relay topic
 
-        string temp = "";
-        string hum = "";
-        string gas = "";
-        string distance = "";
+        public static string temp { get; set; } = "";
+        public static string hum { get; set; } = "";
+        public static string gas { get; set; } = "";
+        public static string distance { get; set; } = "";
 
         void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
@@ -59,11 +77,13 @@ namespace ControlLibrary
                     {
                         temp = msg.Substring(15, 5);
                         hum = msg.Substring(32, 5);
+                        temp_IoTAlert();
                     }
                     else if (msg.IndexOf("Gas Value") > 0)
                     {
                         gas = msg.Substring(13, 4);
                         gas = gas.Trim();
+                        Gas_IoTAlert();
                     }
                     else if (msg.IndexOf("Distance") > 0)
                     {
@@ -76,7 +96,52 @@ namespace ControlLibrary
 
                 }
             }
+        }
+        
+        List<float> tempList = new List<float>();
+        private void temp_IoTAlert()
+        {
+            tempList.Add(float.Parse(temp));
+            if (tempList.Count > 3) { tempList.RemoveAt(0); }
+            for (int i = 0; i < tempList.Count; i++) 
+            {
+                if (tempList[i] > 90)
+                    continue;
+                else
+                    return;
+            }
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            IoTAlert a = new IoTAlert
+            {
+                Place = "2F",
+                Alert = true,
+                PS = "temp溫度"
+            };
+            db.IoTAlert.Add(a);
+            db.SaveChanges();
+        }
 
+        List<int> GasList = new List<int>();
+        private void Gas_IoTAlert()
+        {
+            GasList.Add(int.Parse(gas));
+            if (GasList.Count > 3) { GasList.RemoveAt(0); }
+            for (int i = 0; i < GasList.Count; i++)
+            {
+                if (tempList[i] > 5000)
+                    continue;
+                else
+                    return;
+            }
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            IoTAlert a = new IoTAlert
+            {
+                Place = "2F",
+                Alert = true,
+                PS = "Gas瓦斯"
+            };
+            db.IoTAlert.Add(a);
+            db.SaveChanges();
         }
 
         static bool Check(string IPStr, int Port, int Timeout)
@@ -92,7 +157,7 @@ namespace ControlLibrary
         }
 
         string error = "No Error";
-
+        
         private void Connect()
         {
             string clientId = Guid.NewGuid().ToString();
@@ -140,7 +205,7 @@ namespace ControlLibrary
             }
             
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            var q = from a in db.AllSensorTable
+            var q = from a in db.AllSensorTable.AsEnumerable()
                     select new { a.SensorID,a.Frequency,a.CategoryID };
             for(int i = 0; i < q.Count(); i++)
             {
@@ -212,30 +277,36 @@ namespace ControlLibrary
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Length > 0 ? attributes[0].Description : value.ToString();
         }
+
+        private void IoTGetData_Leave(object sender, EventArgs e)
+        {
+            if (client != null)
+                client.Disconnect();
+        }
         /*
         private void timer_Tick(object sender, EventArgs e)
         {
-            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
-            HTDataTable x = new HTDataTable
-            {
-                SensorID = "home_dht",
-                Time = Convert.ToDateTime(now),
-                Temperature = Convert.ToDouble(temp),
-                Humidity = Convert.ToDouble(hum)
-            };
-            GasSenserData y = new GasSenserData
-            {
-                SensorID = "MQ5_01",
-                Time = Convert.ToDateTime(now),
-                Gasvalue = double.Parse(gas)
-            };
-            DistanceData z = new DistanceData
-            {
-                SensorID = "",
-                Time = Convert.ToDateTime(now),
-                Distance = int.Parse(distance)
-            };
+           Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+           string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+           HTDataTable x = new HTDataTable
+           {
+               SensorID = "home_dht",
+               Time = Convert.ToDateTime(now),
+               Temperature = Convert.ToDouble(temp),
+               Humidity = Convert.ToDouble(hum)
+           };
+           GasSenserData y = new GasSenserData
+           {
+               SensorID = "MQ5_01",
+               Time = Convert.ToDateTime(now),
+               Gasvalue = double.Parse(gas)
+           };
+           DistanceData z = new DistanceData
+           {
+               SensorID = "",
+               Time = Convert.ToDateTime(now),
+               Distance = int.Parse(distance)
+           };
         }*/
     }
 }

@@ -403,3 +403,6 @@ C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.cspr
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.csproj.CopyComplete
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.exe
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\MainForm\obj\Debug\MainForm.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\MainForm\bin\Debug\ControlLibrary.dll
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\MainForm\bin\Debug\ControlLibrary.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\MainForm\bin\Debug\ControlLibrary.dll.config

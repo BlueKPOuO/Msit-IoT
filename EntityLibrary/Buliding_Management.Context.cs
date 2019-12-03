@@ -29,8 +29,6 @@ namespace EntityLibrary
     
         public virtual DbSet<BulletinBoard> BulletinBoard { get; set; }
         public virtual DbSet<EquipFix> EquipFix { get; set; }
-        public virtual DbSet<Equipment> Equipment { get; set; }
-        public virtual DbSet<EquipReservation> EquipReservation { get; set; }
         public virtual DbSet<History> History { get; set; }
         public virtual DbSet<HolderDataTable> HolderDataTable { get; set; }
         public virtual DbSet<Location> Location { get; set; }
@@ -50,10 +48,12 @@ namespace EntityLibrary
         public virtual DbSet<DistanceData> DistanceData { get; set; }
         public virtual DbSet<DistanceSensor> DistanceSensor { get; set; }
         public virtual DbSet<ManagementFee> ManagementFee { get; set; }
-        public virtual DbSet<IoTAlert> IoTAlert { get; set; }
         public virtual DbSet<AllSensorTable> AllSensorTable { get; set; }
         public virtual DbSet<GasSenser> GasSenser { get; set; }
         public virtual DbSet<GasSenserData> GasSenserData { get; set; }
+        public virtual DbSet<Equipment> Equipment { get; set; }
+        public virtual DbSet<EquipReservation> EquipReservation { get; set; }
+        public virtual DbSet<IoTAlert> IoTAlert { get; set; }
     
         public virtual int CreateUser(ObjectParameter iD, string staffID, string userName, byte[] password, string salted, string email)
         {

@@ -51,7 +51,6 @@ C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityF
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.xml
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\bin\Debug\zh-Hant\EntityFramework.resources.dll
-C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csprojAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csproj.GenerateResource.cache
 C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csproj.CopyComplete

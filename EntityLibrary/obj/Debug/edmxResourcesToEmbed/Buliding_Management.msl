@@ -32,30 +32,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Equipment">
-      <EntityTypeMapping TypeName="Buliding_ManagementModel.Equipment">
-        <MappingFragment StoreEntitySet="Equipment">
-          <ScalarProperty Name="UseYear" ColumnName="UseYear" />
-          <ScalarProperty Name="Buydate" ColumnName="Buydate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Vendor" ColumnName="Vendor" />
-          <ScalarProperty Name="Place" ColumnName="Place" />
-          <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
-          <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="EquipReservation">
-      <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipReservation">
-        <MappingFragment StoreEntitySet="EquipReservation">
-          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
-          <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
-          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-          <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-          <ScalarProperty Name="EquipReservationID" ColumnName="EquipReservationID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="History">
       <EntityTypeMapping TypeName="Buliding_ManagementModel.History">
         <MappingFragment StoreEntitySet="History">
@@ -288,15 +264,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="IoTAlert">
-      <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
-        <MappingFragment StoreEntitySet="IoTAlert">
-          <ScalarProperty Name="PS" ColumnName="PS" />
-          <ScalarProperty Name="Alert" ColumnName="Alert" />
-          <ScalarProperty Name="Place" ColumnName="Place" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AllSensorTable">
       <EntityTypeMapping TypeName="Buliding_ManagementModel.AllSensorTable">
         <MappingFragment StoreEntitySet="AllSensorTable">
@@ -327,6 +294,43 @@
           <ScalarProperty Name="Gasvalue" ColumnName="Gasvalue" />
           <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="UseYear" ColumnName="UseYear" />
+          <ScalarProperty Name="Buydate" ColumnName="Buydate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+          <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipReservation">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipReservation">
+        <MappingFragment StoreEntitySet="EquipReservation">
+          <ScalarProperty Name="Review" ColumnName="Review" />
+          <ScalarProperty Name="RentTime" ColumnName="RentTime" />
+          <ScalarProperty Name="Lessee" ColumnName="Lessee" />
+          <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+          <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+          <ScalarProperty Name="EquipReservationID" ColumnName="EquipReservationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IoTAlert">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
+        <MappingFragment StoreEntitySet="IoTAlert">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="PS" ColumnName="PS" />
+          <ScalarProperty Name="Alert" ColumnName="Alert" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

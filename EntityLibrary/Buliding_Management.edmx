@@ -61,6 +61,7 @@
           <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Buydate" Type="date" Nullable="false" />
           <Property Name="UseYear" Type="int" Nullable="false" />
+          <Property Name="Picture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="EquipReservation">
           <Key>
@@ -70,7 +71,9 @@
           <Property Name="EquipmentID" Type="int" Nullable="false" />
           <Property Name="ReservationDate" Type="datetime" Nullable="false" />
           <Property Name="ResidentID" Type="int" Nullable="false" />
-          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="Lessee" Type="nvarchar" MaxLength="10" />
+          <Property Name="RentTime" Type="int" Nullable="false" />
+          <Property Name="Review" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="GasSenser">
           <Key>
@@ -141,16 +144,14 @@
           <Property Name="Frequency" Type="float" />
           <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Buliding_Management.dbo.IoTAlert' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="IoTAlert">
           <Key>
-            <PropertyRef Name="Place" />
-            <PropertyRef Name="Alert" />
+            <PropertyRef Name="SN" />
           </Key>
           <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Alert" Type="bit" Nullable="false" />
           <Property Name="PS" Type="nvarchar" MaxLength="50" />
+          <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -661,6 +662,7 @@
           <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ManagementFee" EntityType="Self.ManagementFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" Schema="dbo" store:Type="Tables" />
@@ -673,13 +675,6 @@
           <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [IoTAlert].[Place] AS [Place], 
-    [IoTAlert].[Alert] AS [Alert], 
-    [IoTAlert].[PS] AS [PS]
-    FROM [dbo].[IoTAlert] AS [IoTAlert]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="AllSensorTable" EntityType="Self.AllSensorTable" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [AllSensorTable].[SensorID] AS [SensorID], 
@@ -826,8 +821,6 @@
           </FunctionImport>
           <EntitySet Name="BulletinBoard" EntityType="Buliding_ManagementModel.BulletinBoard" />
           <EntitySet Name="EquipFix" EntityType="Buliding_ManagementModel.EquipFix" />
-          <EntitySet Name="Equipment" EntityType="Buliding_ManagementModel.Equipment" />
-          <EntitySet Name="EquipReservation" EntityType="Buliding_ManagementModel.EquipReservation" />
           <EntitySet Name="History" EntityType="Buliding_ManagementModel.History" />
           <EntitySet Name="HolderDataTable" EntityType="Buliding_ManagementModel.HolderDataTable" />
           <EntitySet Name="Location" EntityType="Buliding_ManagementModel.Location" />
@@ -843,18 +836,6 @@
           <AssociationSet Name="FK_BulletinBoard_ShaffDataTable" Association="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable">
             <End Role="StaffDataTable" EntitySet="StaffDataTable" />
             <End Role="BulletinBoard" EntitySet="BulletinBoard" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipFix_Equipment" Association="Buliding_ManagementModel.FK_EquipFix_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="EquipFix" EntitySet="EquipFix" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipReservation_Equipment" Association="Buliding_ManagementModel.FK_EquipReservation_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="EquipReservation" EntitySet="EquipReservation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EquipReservation_ResidentDataTable2" Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2">
-            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
-            <End Role="EquipReservation" EntitySet="EquipReservation" />
           </AssociationSet>
           <AssociationSet Name="FK_History_Location" Association="Buliding_ManagementModel.FK_History_Location">
             <End Role="Location" EntitySet="Location" />
@@ -943,7 +924,6 @@
           <EntitySet Name="DistanceData" EntityType="Buliding_ManagementModel.DistanceData" />
           <EntitySet Name="DistanceSensor" EntityType="Buliding_ManagementModel.DistanceSensor" />
           <EntitySet Name="ManagementFee" EntityType="Buliding_ManagementModel.ManagementFee" />
-          <EntitySet Name="IoTAlert" EntityType="Buliding_ManagementModel.IoTAlert" />
           <AssociationSet Name="FK_DistanceData_DistanceSensor" Association="Buliding_ManagementModel.FK_DistanceData_DistanceSensor">
             <End Role="DistanceSensor" EntitySet="DistanceSensor" />
             <End Role="DistanceData" EntitySet="DistanceData" />
@@ -967,6 +947,21 @@
             <End Role="GasSenser" EntitySet="GasSenser" />
             <End Role="GasSenserData" EntitySet="GasSenserData" />
           </AssociationSet>
+          <EntitySet Name="Equipment" EntityType="Buliding_ManagementModel.Equipment" />
+          <EntitySet Name="EquipReservation" EntityType="Buliding_ManagementModel.EquipReservation" />
+          <AssociationSet Name="FK_EquipFix_Equipment" Association="Buliding_ManagementModel.FK_EquipFix_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipFix" EntitySet="EquipFix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_Equipment" Association="Buliding_ManagementModel.FK_EquipReservation_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipReservation_ResidentDataTable2" Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2">
+            <End Role="ResidentDataTable" EntitySet="ResidentDataTable" />
+            <End Role="EquipReservation" EntitySet="EquipReservation" />
+          </AssociationSet>
+          <EntitySet Name="IoTAlert" EntityType="Buliding_ManagementModel.IoTAlert" />
           </EntityContainer>
         <EntityType Name="BulletinBoard">
           <Key>
@@ -994,32 +989,6 @@
           <Property Name="RepairedDate" Type="DateTime" Precision="0" />
           <Property Name="Repaired" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Equipment" Relationship="Buliding_ManagementModel.FK_EquipFix_Equipment" FromRole="EquipFix" ToRole="Equipment" />
-        </EntityType>
-        <EntityType Name="Equipment">
-          <Key>
-            <PropertyRef Name="EquipmentID" />
-          </Key>
-          <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EquipmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Buydate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="UseYear" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EquipFix" Relationship="Buliding_ManagementModel.FK_EquipFix_Equipment" FromRole="Equipment" ToRole="EquipFix" />
-          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="Equipment" ToRole="EquipReservation" />
-        </EntityType>
-        <EntityType Name="EquipReservation">
-          <Key>
-            <PropertyRef Name="EquipReservationID" />
-          </Key>
-          <Property Name="EquipReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
-          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ResidentID" Type="Int32" Nullable="false" />
-          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Equipment" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="EquipReservation" ToRole="Equipment" />
-          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" FromRole="EquipReservation" ToRole="ResidentDataTable" />
         </EntityType>
         <EntityType Name="History">
           <Key>
@@ -1129,7 +1098,6 @@
           <Property Name="ResidentIDNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="CommunityAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ResidentLINE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" FromRole="ResidentDataTable" ToRole="EquipReservation" />
           <NavigationProperty Name="HolderDataTable" Relationship="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable" FromRole="ResidentDataTable" ToRole="HolderDataTable" />
           <NavigationProperty Name="PackageTable" Relationship="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable" FromRole="ResidentDataTable" ToRole="PackageTable" />
           <NavigationProperty Name="PublicSpace" Relationship="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" FromRole="ResidentDataTable" ToRole="PublicSpace" />
@@ -1137,6 +1105,7 @@
           <Property Name="Living" Type="Boolean" Nullable="false" />
           <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ManagementFee" Relationship="Buliding_ManagementModel.FK_ManagementFee_ResidentDataTable" FromRole="ResidentDataTable" ToRole="ManagementFee" />
+          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" FromRole="ResidentDataTable" ToRole="EquipReservation" />
         </EntityType>
         <EntityType Name="ReturnPackage">
           <Key>
@@ -1202,42 +1171,6 @@
             </Principal>
             <Dependent Role="BulletinBoard">
               <PropertyRef Name="StaffID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipFix_Equipment">
-          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
-          <End Type="Buliding_ManagementModel.EquipFix" Role="EquipFix" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentID" />
-            </Principal>
-            <Dependent Role="EquipFix">
-              <PropertyRef Name="EquipmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipReservation_Equipment">
-          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
-          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentID" />
-            </Principal>
-            <Dependent Role="EquipReservation">
-              <PropertyRef Name="EquipmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EquipReservation_ResidentDataTable2">
-          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="1" />
-          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ResidentDataTable">
-              <PropertyRef Name="ResidentID" />
-            </Principal>
-            <Dependent Role="EquipReservation">
-              <PropertyRef Name="ResidentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1508,15 +1441,6 @@
           <Property Name="PaidDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_ManagementFee_ResidentDataTable" FromRole="ManagementFee" ToRole="ResidentDataTable" />
         </EntityType>
-        <EntityType Name="IoTAlert">
-          <Key>
-            <PropertyRef Name="Place" />
-            <PropertyRef Name="Alert" />
-          </Key>
-          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Alert" Type="Boolean" Nullable="false" />
-          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_DistanceData_DistanceSensor">
           <End Type="Buliding_ManagementModel.DistanceSensor" Role="DistanceSensor" Multiplicity="1" />
           <End Type="Buliding_ManagementModel.DistanceData" Role="DistanceData" Multiplicity="*" />
@@ -1614,6 +1538,80 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Buydate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UseYear" Type="Int32" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EquipFix" Relationship="Buliding_ManagementModel.FK_EquipFix_Equipment" FromRole="Equipment" ToRole="EquipFix" />
+          <NavigationProperty Name="EquipReservation" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="Equipment" ToRole="EquipReservation" />
+        </EntityType>
+        <EntityType Name="EquipReservation">
+          <Key>
+            <PropertyRef Name="EquipReservationID" />
+          </Key>
+          <Property Name="EquipReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResidentID" Type="Int32" Nullable="false" />
+          <Property Name="Lessee" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RentTime" Type="Int32" Nullable="false" />
+          <Property Name="Review" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Buliding_ManagementModel.FK_EquipReservation_Equipment" FromRole="EquipReservation" ToRole="Equipment" />
+          <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" FromRole="EquipReservation" ToRole="ResidentDataTable" />
+        </EntityType>
+        <Association Name="FK_EquipFix_Equipment">
+          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipFix" Role="EquipFix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipFix">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_Equipment">
+          <End Type="Buliding_ManagementModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipReservation_ResidentDataTable2">
+          <End Type="Buliding_ManagementModel.ResidentDataTable" Role="ResidentDataTable" Multiplicity="1" />
+          <End Type="Buliding_ManagementModel.EquipReservation" Role="EquipReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResidentDataTable">
+              <PropertyRef Name="ResidentID" />
+            </Principal>
+            <Dependent Role="EquipReservation">
+              <PropertyRef Name="ResidentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IoTAlert">
+          <Key>
+            <PropertyRef Name="SN" />
+          </Key>
+          <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Alert" Type="Boolean" Nullable="false" />
+          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1648,30 +1646,6 @@
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
                 <ScalarProperty Name="EquipmentFixID" ColumnName="EquipmentFixID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Equipment">
-            <EntityTypeMapping TypeName="Buliding_ManagementModel.Equipment">
-              <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="UseYear" ColumnName="UseYear" />
-                <ScalarProperty Name="Buydate" ColumnName="Buydate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EquipReservation">
-            <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipReservation">
-              <MappingFragment StoreEntitySet="EquipReservation">
-                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
-                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
-                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-                <ScalarProperty Name="EquipReservationID" ColumnName="EquipReservationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1907,15 +1881,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IoTAlert">
-            <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
-              <MappingFragment StoreEntitySet="IoTAlert">
-                <ScalarProperty Name="PS" ColumnName="PS" />
-                <ScalarProperty Name="Alert" ColumnName="Alert" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AllSensorTable">
             <EntityTypeMapping TypeName="Buliding_ManagementModel.AllSensorTable">
               <MappingFragment StoreEntitySet="AllSensorTable">
@@ -1946,6 +1911,43 @@
                 <ScalarProperty Name="Gasvalue" ColumnName="Gasvalue" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="UseYear" ColumnName="UseYear" />
+                <ScalarProperty Name="Buydate" ColumnName="Buydate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipReservation">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.EquipReservation">
+              <MappingFragment StoreEntitySet="EquipReservation">
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="RentTime" ColumnName="RentTime" />
+                <ScalarProperty Name="Lessee" ColumnName="Lessee" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="EquipReservationID" ColumnName="EquipReservationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IoTAlert">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
+              <MappingFragment StoreEntitySet="IoTAlert">
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="PS" ColumnName="PS" />
+                <ScalarProperty Name="Alert" ColumnName="Alert" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

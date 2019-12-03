@@ -56,6 +56,7 @@
     <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Buydate" Type="date" Nullable="false" />
     <Property Name="UseYear" Type="int" Nullable="false" />
+    <Property Name="Picture" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="EquipReservation">
     <Key>
@@ -65,7 +66,9 @@
     <Property Name="EquipmentID" Type="int" Nullable="false" />
     <Property Name="ReservationDate" Type="datetime" Nullable="false" />
     <Property Name="ResidentID" Type="int" Nullable="false" />
-    <Property Name="ReturnDate" Type="datetime" />
+    <Property Name="Lessee" Type="nvarchar" MaxLength="10" />
+    <Property Name="RentTime" Type="int" Nullable="false" />
+    <Property Name="Review" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="GasSenser">
     <Key>
@@ -136,16 +139,14 @@
     <Property Name="Frequency" Type="float" />
     <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
   </EntityType>
-  <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Buliding_Management.dbo.IoTAlert' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
   <EntityType Name="IoTAlert">
     <Key>
-      <PropertyRef Name="Place" />
-      <PropertyRef Name="Alert" />
+      <PropertyRef Name="SN" />
     </Key>
     <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Alert" Type="bit" Nullable="false" />
     <Property Name="PS" Type="nvarchar" MaxLength="50" />
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -656,6 +657,7 @@
     <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ManagementFee" EntityType="Self.ManagementFee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PackageCompany" EntityType="Self.PackageCompany" Schema="dbo" store:Type="Tables" />
@@ -668,13 +670,6 @@
     <EntitySet Name="ShiftTable" EntityType="Self.ShiftTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StaffDataTable" EntityType="Self.StaffDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [IoTAlert].[Place] AS [Place], 
-    [IoTAlert].[Alert] AS [Alert], 
-    [IoTAlert].[PS] AS [PS]
-    FROM [dbo].[IoTAlert] AS [IoTAlert]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="AllSensorTable" EntityType="Self.AllSensorTable" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [AllSensorTable].[SensorID] AS [SensorID], 
