@@ -112,6 +112,9 @@
     <Compile Include="HumiTemperSenser.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImmediateIoTData.cs">
+      <DependentUpon>Buliding_Management.tt</DependentUpon>
+    </Compile>
     <Compile Include="IoTAlert.cs">
       <DependentUpon>Buliding_Management.tt</DependentUpon>
     </Compile>

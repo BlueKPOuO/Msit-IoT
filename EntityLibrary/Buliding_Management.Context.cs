@@ -54,6 +54,7 @@ namespace EntityLibrary
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<EquipReservation> EquipReservation { get; set; }
         public virtual DbSet<IoTAlert> IoTAlert { get; set; }
+        public virtual DbSet<ImmediateIoTData> ImmediateIoTData { get; set; }
     
         public virtual int CreateUser(ObjectParameter iD, string staffID, string userName, byte[] password, string salted, string email)
         {

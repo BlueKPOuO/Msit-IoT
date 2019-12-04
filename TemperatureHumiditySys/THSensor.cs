@@ -177,7 +177,7 @@ namespace TemperatureHumiditySys
         
         async private void btn_AlertTest_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 3; i++)
             {//溫度待填回傳字串進去
                 await Task.Run(()=> Publish("home_dht", "{\"temperature\":95.00,\"humidity\":00.00}", 2));
             }

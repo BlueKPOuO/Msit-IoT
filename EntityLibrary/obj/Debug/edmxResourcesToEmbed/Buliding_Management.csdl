@@ -163,6 +163,7 @@
       <End Role="EquipReservation" EntitySet="EquipReservation" />
     </AssociationSet>
     <EntitySet Name="IoTAlert" EntityType="Buliding_ManagementModel.IoTAlert" />
+    <EntitySet Name="ImmediateIoTData" EntityType="Buliding_ManagementModel.ImmediateIoTData" />
   </EntityContainer>
   <EntityType Name="BulletinBoard">
     <Key>
@@ -288,6 +289,7 @@
     <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" FromRole="PublicSpace" ToRole="ResidentDataTable" />
     <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" FromRole="PublicSpace" ToRole="StaffDataTable" />
     <Property Name="DateTimeNow" Type="DateTime" Precision="3" />
+    <Property Name="借用審核" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ResidentDataTable">
     <Key>
@@ -808,9 +810,19 @@
     <Key>
       <PropertyRef Name="SN" />
     </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Alert" Type="Boolean" Nullable="false" />
     <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ImmediateIoTData">
+    <Key>
+      <PropertyRef Name="Topic" />
+    </Key>
+    <Property Name="Topic" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Value2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

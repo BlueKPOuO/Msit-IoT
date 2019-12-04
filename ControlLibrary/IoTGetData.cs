@@ -102,20 +102,25 @@ namespace ControlLibrary
         private void temp_IoTAlert()
         {
             tempList.Add(float.Parse(temp));
-            if (tempList.Count > 3) { tempList.RemoveAt(0); }
-            for (int i = 0; i < tempList.Count; i++) 
+            if (tempList.Count > 3)
             {
-                if (tempList[i] > 90)
-                    continue;
-                else
-                    return;
+                tempList.RemoveAt(0);
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    if (tempList[i] > 80)
+                        continue;
+                    else
+                        return;
+                }
             }
+            else return;
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             IoTAlert a = new IoTAlert
             {
                 Place = "2F",
                 Alert = true,
-                PS = "temp溫度"
+                PS = "temp溫度",
+                Time = DateTime.Now
             };
             db.IoTAlert.Add(a);
             db.SaveChanges();
@@ -125,20 +130,25 @@ namespace ControlLibrary
         private void Gas_IoTAlert()
         {
             GasList.Add(int.Parse(gas));
-            if (GasList.Count > 3) { GasList.RemoveAt(0); }
-            for (int i = 0; i < GasList.Count; i++)
+            if (GasList.Count > 3)
             {
-                if (tempList[i] > 5000)
-                    continue;
-                else
-                    return;
+                GasList.RemoveAt(0);
+                for (int i = 0; i < GasList.Count; i++)
+                {
+                    if (GasList[i] > 5000)
+                        continue;
+                    else
+                        return;
+                }
             }
+            else return;
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             IoTAlert a = new IoTAlert
             {
                 Place = "2F",
                 Alert = true,
-                PS = "Gas瓦斯"
+                PS = "Gas瓦斯",
+                Time = DateTime.Now
             };
             db.IoTAlert.Add(a);
             db.SaveChanges();

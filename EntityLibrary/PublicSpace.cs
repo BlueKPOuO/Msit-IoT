@@ -23,6 +23,7 @@ namespace EntityLibrary
         public System.DateTime EndTime { get; set; }
         public string Reason { get; set; }
         public Nullable<System.DateTime> DateTimeNow { get; set; }
+        public bool 借用審核 { get; set; }
     
         public virtual Location Location { get; set; }
         public virtual ResidentDataTable ResidentDataTable { get; set; }

@@ -108,6 +108,7 @@
     <EntitySetMapping Name="PublicSpace">
       <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
         <MappingFragment StoreEntitySet="PublicSpace">
+          <ScalarProperty Name="借用審核" ColumnName="借用審核" />
           <ScalarProperty Name="DateTimeNow" ColumnName="DateTimeNow" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
@@ -327,10 +328,21 @@
     <EntitySetMapping Name="IoTAlert">
       <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
         <MappingFragment StoreEntitySet="IoTAlert">
-          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="PS" ColumnName="PS" />
           <ScalarProperty Name="Alert" ColumnName="Alert" />
           <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImmediateIoTData">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel.ImmediateIoTData">
+        <MappingFragment StoreEntitySet="ImmediateIoTData">
+          <ScalarProperty Name="PS" ColumnName="PS" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

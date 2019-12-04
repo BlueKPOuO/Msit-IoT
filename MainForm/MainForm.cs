@@ -119,6 +119,7 @@ namespace MainForm
                     IoTGetData a = new IoTGetData();
                     //a.Visible = false;
                     this.Controls.Add(a);
+                    GetAlert.Enabled = true;
                 }
                 else
                     this.Dispose();
@@ -146,25 +147,46 @@ namespace MainForm
             dps.Show();
         }
 
+        int AlertCount = 0;
         private async void GetAlert_Tick(object sender, EventArgs e)
         {
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             var q = db.IoTAlert;
             if(q.Any(n => n.Alert == true))
             {
-                var x = q.Where(n => n.Alert == true).First();
+                var x = q.Where(n => n.Alert == true).FirstOrDefault();
                 string place = x.Place;
                 string type = x.PS;
-                DialogResult a = await Task.Run(() => MessageBox.Show($@"位置{place} {type}數值超標","警報",MessageBoxButtons.OKCancel,MessageBoxIcon.Error));
-                if (a == DialogResult.OK)
+                DateTime time = x.Time;
+                DialogResult a = await Task.Run(() => ShowAlert(place,type));
+                if (a == DialogResult.Yes)
                 {
-                    var b = db.IoTAlert.Where(n => n.Alert == true).First();
-                    b.Alert = false;
+                    AlertCount = 0;
+                    x.Alert = false;
                     db.SaveChanges();
                 }
+                else if (a == DialogResult.No) 
+                {
+                    AlertCount--;
+                }
+                /*else { Task.WaitAll(); }*/
             }
         }
+        
+        public DialogResult ShowAlert(string Place,string Type)
+        {
+            while(AlertCount<5)
+            {
+                AlertCount++;
+                DialogResult result = MessageBox.Show($@"位置{Place} {Type}數值超標", "警報", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                return result;
+            }
+            return DialogResult.Ignore;
+        }
 
-
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

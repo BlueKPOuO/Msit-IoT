@@ -144,14 +144,24 @@
           <Property Name="Frequency" Type="float" />
           <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
+        <EntityType Name="ImmediateIoTData">
+          <Key>
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Topic" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="10" />
+          <Property Name="Value2" Type="nvarchar" MaxLength="10" />
+          <Property Name="PS" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="IoTAlert">
           <Key>
             <PropertyRef Name="SN" />
           </Key>
+          <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Alert" Type="bit" Nullable="false" />
           <Property Name="PS" Type="nvarchar" MaxLength="50" />
-          <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -220,6 +230,7 @@
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="50" />
           <Property Name="DateTimeNow" Type="datetime" />
+          <Property Name="借用審核" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ResidentDataTable">
           <Key>
@@ -662,6 +673,7 @@
           <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImmediateIoTData" EntityType="Self.ImmediateIoTData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ManagementFee" EntityType="Self.ManagementFee" Schema="dbo" store:Type="Tables" />
@@ -962,6 +974,7 @@
             <End Role="EquipReservation" EntitySet="EquipReservation" />
           </AssociationSet>
           <EntitySet Name="IoTAlert" EntityType="Buliding_ManagementModel.IoTAlert" />
+          <EntitySet Name="ImmediateIoTData" EntityType="Buliding_ManagementModel.ImmediateIoTData" />
           </EntityContainer>
         <EntityType Name="BulletinBoard">
           <Key>
@@ -1087,6 +1100,7 @@
           <NavigationProperty Name="ResidentDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" FromRole="PublicSpace" ToRole="ResidentDataTable" />
           <NavigationProperty Name="StaffDataTable" Relationship="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" FromRole="PublicSpace" ToRole="StaffDataTable" />
           <Property Name="DateTimeNow" Type="DateTime" Precision="3" />
+          <Property Name="借用審核" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ResidentDataTable">
           <Key>
@@ -1607,10 +1621,20 @@
           <Key>
             <PropertyRef Name="SN" />
           </Key>
+          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Alert" Type="Boolean" Nullable="false" />
           <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ImmediateIoTData">
+          <Key>
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Value2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1725,6 +1749,7 @@
           <EntitySetMapping Name="PublicSpace">
             <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
               <MappingFragment StoreEntitySet="PublicSpace">
+                <ScalarProperty Name="借用審核" ColumnName="借用審核" />
                 <ScalarProperty Name="DateTimeNow" ColumnName="DateTimeNow" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
@@ -1944,10 +1969,21 @@
           <EntitySetMapping Name="IoTAlert">
             <EntityTypeMapping TypeName="Buliding_ManagementModel.IoTAlert">
               <MappingFragment StoreEntitySet="IoTAlert">
-                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="PS" ColumnName="PS" />
                 <ScalarProperty Name="Alert" ColumnName="Alert" />
                 <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImmediateIoTData">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ImmediateIoTData">
+              <MappingFragment StoreEntitySet="ImmediateIoTData">
+                <ScalarProperty Name="PS" ColumnName="PS" />
+                <ScalarProperty Name="Value2" ColumnName="Value2" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

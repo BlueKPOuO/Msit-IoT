@@ -139,14 +139,24 @@
     <Property Name="Frequency" Type="float" />
     <Property Name="CategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
   </EntityType>
+  <EntityType Name="ImmediateIoTData">
+    <Key>
+      <PropertyRef Name="Topic" />
+    </Key>
+    <Property Name="Topic" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="10" />
+    <Property Name="Value2" Type="nvarchar" MaxLength="10" />
+    <Property Name="PS" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="IoTAlert">
     <Key>
       <PropertyRef Name="SN" />
     </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Alert" Type="bit" Nullable="false" />
     <Property Name="PS" Type="nvarchar" MaxLength="50" />
-    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -215,6 +225,7 @@
     <Property Name="EndTime" Type="datetime" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="50" />
     <Property Name="DateTimeNow" Type="datetime" />
+    <Property Name="借用審核" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ResidentDataTable">
     <Key>
@@ -657,6 +668,7 @@
     <EntitySet Name="HolderDataTable" EntityType="Self.HolderDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HTDataTable" EntityType="Self.HTDataTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HumiTemperSenser" EntityType="Self.HumiTemperSenser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImmediateIoTData" EntityType="Self.ImmediateIoTData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IoTAlert" EntityType="Self.IoTAlert" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ManagementFee" EntityType="Self.ManagementFee" Schema="dbo" store:Type="Tables" />

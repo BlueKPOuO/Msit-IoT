@@ -102,3 +102,4 @@ C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\EntityLibrary\obj\Debug\EntityLi
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\EntityLibrary\obj\Debug\EntityLibrary.csproj.CopyComplete
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\EntityLibrary\obj\Debug\EntityLibrary.dll
 C:\Users\User\Desktop\12320\Msit-IoT-WinFormApp\EntityLibrary\obj\Debug\EntityLibrary.pdb
+C:\Users\Administrator\Documents\GitHub\Msit-IoT\EntityLibrary\obj\Debug\EntityLibrary.csprojAssemblyReference.cache

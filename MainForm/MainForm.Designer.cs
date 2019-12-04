@@ -185,7 +185,6 @@
             // 
             // GetAlert
             // 
-            this.GetAlert.Enabled = true;
             this.GetAlert.Interval = 500;
             this.GetAlert.Tick += new System.EventHandler(this.GetAlert_Tick);
             // 
@@ -202,6 +201,7 @@
             this.Controls.Add(this.button4);
             this.Name = "MainForm";
             this.Text = "主選單";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.button4, 0);
