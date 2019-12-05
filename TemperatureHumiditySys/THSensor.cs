@@ -79,6 +79,7 @@ namespace TemperatureHumiditySys
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             var qq = from a in db.HTDataTable
                      where a.SensorID == subTopic
+                     orderby a.Time descending
                      select new
                      {
                          a.SensorID,
@@ -159,6 +160,7 @@ namespace TemperatureHumiditySys
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
 
             var q = from a in db.HTDataTable
+                    orderby a.Time descending
                     select new
                     {
                         a.SensorID,

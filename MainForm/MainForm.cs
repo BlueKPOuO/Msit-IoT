@@ -105,7 +105,7 @@ namespace MainForm
             fpm.UserName = UserName;
             fpm.Show();
         }
-
+        IoTGetData a;
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (!loginStatus)
@@ -116,7 +116,7 @@ namespace MainForm
                     Account = fl.username;
                     loginStatus = true;
                     UserName = Account;
-                    IoTGetData a = new IoTGetData();
+                    IoTGetData a = new IoTGetData();//加入控制項
                     //a.Visible = false;
                     this.Controls.Add(a);
                     GetAlert.Enabled = true;
@@ -149,7 +149,7 @@ namespace MainForm
 
         int AlertCount = 0;
         private async void GetAlert_Tick(object sender, EventArgs e)
-        {
+        {//讀取警報的timer的事件
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             var q = db.IoTAlert;
             if(q.Any(n => n.Alert == true))
@@ -158,7 +158,7 @@ namespace MainForm
                 string place = x.Place;
                 string type = x.PS;
                 DateTime time = x.Time;
-                DialogResult a = await Task.Run(() => ShowAlert(place,type));
+                DialogResult a = await Task.Run(() => ShowAlert(place,type));//使用非同步跑ShowAlert事件
                 if (a == DialogResult.Yes)
                 {
                     AlertCount = 0;
@@ -176,7 +176,7 @@ namespace MainForm
         public DialogResult ShowAlert(string Place,string Type)
         {
             while(AlertCount<5)
-            {
+            {//最多跳5個messagebox以免太多
                 AlertCount++;
                 DialogResult result = MessageBox.Show($@"位置{Place} {Type}數值超標", "警報", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 return result;

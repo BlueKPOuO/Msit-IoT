@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="Buliding_ManagementModel.PackageCompany" Width="1.5" PointX="3" PointY="16.25" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.PackageTable" Width="1.5" PointX="5.25" PointY="7.75" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.ParkingManagement" Width="1.5" PointX="5.25" PointY="19.75" />
-        <EntityTypeShape EntityType="Buliding_ManagementModel.PublicSpace" Width="1.5" PointX="8.25" PointY="11.625" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.ResidentDataTable" Width="1.5" PointX="3" PointY="6.375" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.ReturnPackage" Width="1.5" PointX="8.25" PointY="15.875" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.ShiftTable" Width="1.5" PointX="0.75" PointY="12.25" />
@@ -22,14 +21,11 @@
         <AssociationConnector Association="Buliding_ManagementModel.FK_BulletinBoard_ShaffDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_History_Location" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_HolderDataTable_ResidentDataTable" />
-        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_Location" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_PackageCompany" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_ReturnCompany_PackageCompany" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_ResidentDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PackageTable_StaffDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_ParkingManagement_ShaffDataTable" />
-        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" />
-        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_ReturnCompany_ResidentDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_StaffDataTable_ShiftTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_UserAccount_ShaffDataTable" />
@@ -57,6 +53,10 @@
         <AssociationConnector Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.IoTAlert" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.ImmediateIoTData" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.PublicSpace" Width="1.5" PointX="8.25" PointY="10.5" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_Location" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" />
+        <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

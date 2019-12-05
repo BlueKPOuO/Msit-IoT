@@ -225,7 +225,8 @@
     <Property Name="EndTime" Type="datetime" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="50" />
     <Property Name="DateTimeNow" Type="datetime" />
-    <Property Name="借用審核" Type="bit" Nullable="false" />
+    <Property Name="借用審核" Type="bit" />
+    <Property Name="History" Type="bit" />
   </EntityType>
   <EntityType Name="ResidentDataTable">
     <Key>

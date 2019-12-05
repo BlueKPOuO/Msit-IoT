@@ -35,7 +35,6 @@ namespace EntityLibrary
         public virtual DbSet<PackageCompany> PackageCompany { get; set; }
         public virtual DbSet<PackageTable> PackageTable { get; set; }
         public virtual DbSet<ParkingManagement> ParkingManagement { get; set; }
-        public virtual DbSet<PublicSpace> PublicSpace { get; set; }
         public virtual DbSet<ResidentDataTable> ResidentDataTable { get; set; }
         public virtual DbSet<ReturnPackage> ReturnPackage { get; set; }
         public virtual DbSet<ShiftTable> ShiftTable { get; set; }
@@ -55,6 +54,7 @@ namespace EntityLibrary
         public virtual DbSet<EquipReservation> EquipReservation { get; set; }
         public virtual DbSet<IoTAlert> IoTAlert { get; set; }
         public virtual DbSet<ImmediateIoTData> ImmediateIoTData { get; set; }
+        public virtual DbSet<PublicSpace> PublicSpace { get; set; }
     
         public virtual int CreateUser(ObjectParameter iD, string staffID, string userName, byte[] password, string salted, string email)
         {

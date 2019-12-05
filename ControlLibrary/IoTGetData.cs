@@ -34,6 +34,7 @@ namespace ControlLibrary
                 return false;
             }
         }
+
         public IoTGetData()
         {
             if (true)
@@ -77,38 +78,94 @@ namespace ControlLibrary
                     {
                         temp = msg.Substring(15, 5);
                         hum = msg.Substring(32, 5);
+
+                        Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                        ImmediateIoTData x = new ImmediateIoTData
+                        {
+                            Topic = "home_dht",
+                            Value = temp,
+                            Value2 = hum
+                        };
+
+                        if (db.ImmediateIoTData.Any(n => n.Topic == "home_dht"))
+                        {
+                            var a = db.ImmediateIoTData.Where(n => n.Topic == "home_dht").First();
+                            a.Value = x.Value;
+                            a.Value2 = x.Value2;
+                            a.PS = x.PS;
+                        }
+                        else
+                            db.ImmediateIoTData.Add(x);
+                        db.SaveChanges();
+
                         temp_IoTAlert();
                     }
                     else if (msg.IndexOf("Gas Value") > 0)
                     {
                         gas = msg.Substring(13, 4);
                         gas = gas.Trim();
+                        Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                        ImmediateIoTData x = new ImmediateIoTData
+                        {
+                            Topic = "MQ5_01",
+                            Value = gas,
+                        };
+
+                        if (db.ImmediateIoTData.Any(n => n.Topic == "MQ5_01"))
+                        {
+                            var a = db.ImmediateIoTData.Where(n => n.Topic == "MQ5_01").First();
+                            a.Value = x.Value;
+                            a.Value2 = x.Value2;
+                            a.PS = x.PS;
+                        }
+                        else
+                            db.ImmediateIoTData.Add(x);
+                        db.SaveChanges();
+
                         Gas_IoTAlert();
                     }
                     else if (msg.IndexOf("Distance") > 0)
                     {
                         distance = msg.Substring(12, 4);
                         distance = distance.Trim();
+
+                        Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                        ImmediateIoTData x = new ImmediateIoTData
+                        {
+                            Topic = "US_01",
+                            Value = distance,
+                        };
+
+                        if (db.ImmediateIoTData.Any(n => n.Topic == "US_01"))
+                        {
+                            var a = db.ImmediateIoTData.Where(n => n.Topic == "US_01").First();
+                            a.Value = x.Value;
+                            a.Value2 = x.Value2;
+                            a.PS = x.PS;
+                        }
+                        else
+                            db.ImmediateIoTData.Add(x);
+                        db.SaveChanges();
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    var a = ex.Message;
                 }
             }
         }
         
         List<float> tempList = new List<float>();
         private void temp_IoTAlert()
-        {
+        {//溫度警報
             tempList.Add(float.Parse(temp));
-            if (tempList.Count > 3)
+            if (tempList.Count > 3)//抓取資料>3筆
             {
                 tempList.RemoveAt(0);
                 for (int i = 0; i < tempList.Count; i++)
                 {
-                    if (tempList[i] > 80)
-                        continue;
+                    if (tempList[i] > 50)
+                        continue;//是否3筆都大於50度
                     else
                         return;
                 }
@@ -116,14 +173,33 @@ namespace ControlLibrary
             else return;
             Buliding_ManagementEntities db = new Buliding_ManagementEntities();
             IoTAlert a = new IoTAlert
-            {
+            {//寫警報進資料庫
                 Place = "2F",
                 Alert = true,
                 PS = "temp溫度",
                 Time = DateTime.Now
             };
-            db.IoTAlert.Add(a);
-            db.SaveChanges();
+
+            CheckLastAlertAndSave(db, a);
+        }
+
+        private static void CheckLastAlertAndSave(Buliding_ManagementEntities db, IoTAlert a)
+        {//避免短時間重複寫大量警報進資料庫
+            if (db.IoTAlert.Any(n => n.PS == a.PS))
+            {
+                var lastAlertTime = db.IoTAlert.AsEnumerable().Where(n => n.PS == a.PS).Last().Time;
+                TimeSpan Distime = a.Time - lastAlertTime;//上一筆資料與這筆資料必須時差超過2分鐘才可在寫
+                if (Distime.Minutes > 2)
+                {
+                    db.IoTAlert.Add(a);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                db.IoTAlert.Add(a);
+                db.SaveChanges();
+            }
         }
 
         List<int> GasList = new List<int>();
@@ -150,8 +226,7 @@ namespace ControlLibrary
                 PS = "Gas瓦斯",
                 Time = DateTime.Now
             };
-            db.IoTAlert.Add(a);
-            db.SaveChanges();
+            CheckLastAlertAndSave(db, a);
         }
 
         static bool Check(string IPStr, int Port, int Timeout)
@@ -240,45 +315,54 @@ namespace ControlLibrary
 
         private void DistanceToDB(object sender, EventArgs e)
         {
-            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
-            DistanceData z = new DistanceData
+            if(int.TryParse(distance,out int p_dis))
             {
-                SensorID = ((Timer)sender).Tag.ToString(),
-                Time = Convert.ToDateTime(now),
-                Distance = int.Parse(distance)
-            };
-            db.DistanceData.Add(z);
-            db.SaveChanges();
+                Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+                DistanceData z = new DistanceData
+                {
+                    SensorID = ((Timer)sender).Tag.ToString(),
+                    Time = Convert.ToDateTime(now),
+                    Distance = p_dis
+                };
+                db.DistanceData.Add(z);
+                db.SaveChanges();
+            }
         }
 
         private void GasDataToDB(object sender, EventArgs e)
         {
-            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
-            GasSenserData y = new GasSenserData
+            if(double.TryParse(gas,out double p_gas))
             {
-                SensorID = ((Timer)sender).Tag.ToString(),
-                Time = Convert.ToDateTime(now),
-                Gasvalue = double.Parse(gas)
-            };
-            db.GasSenserData.Add(y);
-            db.SaveChanges();
+                Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+                GasSenserData y = new GasSenserData
+                {
+                    SensorID = ((Timer)sender).Tag.ToString(),
+                    Time = Convert.ToDateTime(now),
+                    Gasvalue = p_gas
+                };
+                db.GasSenserData.Add(y);
+                db.SaveChanges();
+            }
         }
 
         private void HTDataToDB(object sender, EventArgs e)
         {
-            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
-            string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
-            HTDataTable x = new HTDataTable
+            if (double.TryParse(temp, out double p_temp) && double.TryParse(hum, out double p_hum)) 
             {
-                SensorID = ((Timer)sender).Tag.ToString(),
-                Time = Convert.ToDateTime(now),
-                Temperature = Convert.ToDouble(temp),
-                Humidity = Convert.ToDouble(hum)
-            };
-            db.HTDataTable.Add(x);
-            db.SaveChanges();
+                Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+                string now = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff");
+                HTDataTable x = new HTDataTable
+                {
+                    SensorID = ((Timer)sender).Tag.ToString(),
+                    Time = Convert.ToDateTime(now),
+                    Temperature = p_temp,
+                    Humidity = p_hum
+                };
+                db.HTDataTable.Add(x);
+                db.SaveChanges();
+            }
         }
 
         public string GetDescription(Enum value)

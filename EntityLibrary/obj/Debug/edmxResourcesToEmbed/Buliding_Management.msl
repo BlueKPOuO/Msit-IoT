@@ -105,22 +105,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PublicSpace">
-      <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
-        <MappingFragment StoreEntitySet="PublicSpace">
-          <ScalarProperty Name="借用審核" ColumnName="借用審核" />
-          <ScalarProperty Name="DateTimeNow" ColumnName="DateTimeNow" />
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-          <ScalarProperty Name="barrierName" ColumnName="barrierName" />
-          <ScalarProperty Name="seq" ColumnName="seq" />
-          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
-          <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ResidentDataTable">
       <EntityTypeMapping TypeName="Buliding_ManagementModel.ResidentDataTable">
         <MappingFragment StoreEntitySet="ResidentDataTable">
@@ -343,6 +327,23 @@
           <ScalarProperty Name="Value2" ColumnName="Value2" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Topic" ColumnName="Topic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PublicSpace">
+      <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
+        <MappingFragment StoreEntitySet="PublicSpace">
+          <ScalarProperty Name="History" ColumnName="History" />
+          <ScalarProperty Name="借用審核" ColumnName="借用審核" />
+          <ScalarProperty Name="DateTimeNow" ColumnName="DateTimeNow" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="barrierName" ColumnName="barrierName" />
+          <ScalarProperty Name="seq" ColumnName="seq" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
