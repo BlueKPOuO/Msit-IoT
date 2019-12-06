@@ -52,11 +52,11 @@
         <AssociationConnector Association="Buliding_ManagementModel.FK_EquipReservation_Equipment" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_EquipReservation_ResidentDataTable2" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.IoTAlert" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Buliding_ManagementModel.ImmediateIoTData" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="Buliding_ManagementModel.PublicSpace" Width="1.5" PointX="8.25" PointY="10.5" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_Location" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ResidentDataTable" />
         <AssociationConnector Association="Buliding_ManagementModel.FK_PublicSpace_ShaffDataTable" />
+        <EntityTypeShape EntityType="Buliding_ManagementModel.ImmediateIoTData" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -150,7 +150,6 @@
           </Key>
           <Property Name="Topic" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Value" Type="nvarchar" MaxLength="10" />
-          <Property Name="Value2" Type="nvarchar" MaxLength="10" />
           <Property Name="PS" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="IoTAlert">
@@ -962,7 +961,6 @@
             <End Role="EquipReservation" EntitySet="EquipReservation" />
           </AssociationSet>
           <EntitySet Name="IoTAlert" EntityType="Buliding_ManagementModel.IoTAlert" />
-          <EntitySet Name="ImmediateIoTData" EntityType="Buliding_ManagementModel.ImmediateIoTData" />
           <EntitySet Name="PublicSpace" EntityType="Buliding_ManagementModel.PublicSpace" />
           <AssociationSet Name="FK_PublicSpace_Location" Association="Buliding_ManagementModel.FK_PublicSpace_Location">
             <End Role="Location" EntitySet="Location" />
@@ -976,6 +974,7 @@
             <End Role="StaffDataTable" EntitySet="StaffDataTable" />
             <End Role="PublicSpace" EntitySet="PublicSpace" />
           </AssociationSet>
+          <EntitySet Name="ImmediateIoTData" EntityType="Buliding_ManagementModel.ImmediateIoTData" />
           </EntityContainer>
         <EntityType Name="BulletinBoard">
           <Key>
@@ -1574,15 +1573,6 @@
           <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="ImmediateIoTData">
-          <Key>
-            <PropertyRef Name="Topic" />
-          </Key>
-          <Property Name="Topic" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Value2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="PublicSpace">
           <Key>
             <PropertyRef Name="seq" />
@@ -1638,6 +1628,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ImmediateIoTData">
+          <Key>
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1963,16 +1961,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ImmediateIoTData">
-            <EntityTypeMapping TypeName="Buliding_ManagementModel.ImmediateIoTData">
-              <MappingFragment StoreEntitySet="ImmediateIoTData">
-                <ScalarProperty Name="PS" ColumnName="PS" />
-                <ScalarProperty Name="Value2" ColumnName="Value2" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Topic" ColumnName="Topic" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PublicSpace">
             <EntityTypeMapping TypeName="Buliding_ManagementModel.PublicSpace">
               <MappingFragment StoreEntitySet="PublicSpace">
@@ -1987,6 +1975,15 @@
                 <ScalarProperty Name="seq" ColumnName="seq" />
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImmediateIoTData">
+            <EntityTypeMapping TypeName="Buliding_ManagementModel.ImmediateIoTData">
+              <MappingFragment StoreEntitySet="ImmediateIoTData">
+                <ScalarProperty Name="PS" ColumnName="PS" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -81,21 +81,35 @@ namespace ControlLibrary
 
                         Buliding_ManagementEntities db = new Buliding_ManagementEntities();
                         ImmediateIoTData x = new ImmediateIoTData
-                        {
-                            Topic = "home_dht",
-                            Value = temp,
-                            Value2 = hum
+                        {//溫度
+                            Topic = "home_dht_t",
+                            Value = temp
                         };
 
-                        if (db.ImmediateIoTData.Any(n => n.Topic == "home_dht"))
-                        {
-                            var a = db.ImmediateIoTData.Where(n => n.Topic == "home_dht").First();
+                        if (db.ImmediateIoTData.Any(n => n.Topic == "home_dht_t"))
+                        {//資料表內已有該資料列的情況
+                            var a = db.ImmediateIoTData.Where(n => n.Topic == "home_dht_t").First();
                             a.Value = x.Value;
-                            a.Value2 = x.Value2;
                             a.PS = x.PS;
                         }
-                        else
+                        else//否則直接增加一行
                             db.ImmediateIoTData.Add(x);
+
+                        ImmediateIoTData y = new ImmediateIoTData
+                        {//濕度
+                            Topic = "home_dht_h",
+                            Value = hum
+                        };
+
+                        if (db.ImmediateIoTData.Any(n => n.Topic == "home_dht_h"))
+                        {//資料表內已有該資料列的情況
+                            var b = db.ImmediateIoTData.Where(n => n.Topic == "home_dht_h").First();
+                            b.Value = y.Value;
+                            b.PS = y.PS;
+                        }
+                        else//否則直接增加一行
+                            db.ImmediateIoTData.Add(y);
+
                         db.SaveChanges();
 
                         temp_IoTAlert();
@@ -115,7 +129,6 @@ namespace ControlLibrary
                         {
                             var a = db.ImmediateIoTData.Where(n => n.Topic == "MQ5_01").First();
                             a.Value = x.Value;
-                            a.Value2 = x.Value2;
                             a.PS = x.PS;
                         }
                         else
@@ -140,7 +153,6 @@ namespace ControlLibrary
                         {
                             var a = db.ImmediateIoTData.Where(n => n.Topic == "US_01").First();
                             a.Value = x.Value;
-                            a.Value2 = x.Value2;
                             a.PS = x.PS;
                         }
                         else

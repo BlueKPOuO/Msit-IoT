@@ -105,7 +105,7 @@ namespace MainForm
             fpm.UserName = UserName;
             fpm.Show();
         }
-        IoTGetData a;
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (!loginStatus)
