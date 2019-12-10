@@ -78,7 +78,7 @@ namespace ControlLibrary
                     {
                         temp = msg.Substring(15, 5);
                         hum = msg.Substring(32, 5);
-
+                        //即時資訊寫入資料庫
                         Buliding_ManagementEntities db = new Buliding_ManagementEntities();
                         ImmediateIoTData x = new ImmediateIoTData
                         {//溫度
@@ -158,6 +158,7 @@ namespace ControlLibrary
                         else
                             db.ImmediateIoTData.Add(x);
                         db.SaveChanges();
+                        Distance_IntoParking(distance);
                     }
                 }
                 catch(Exception ex)
@@ -166,7 +167,50 @@ namespace ControlLibrary
                 }
             }
         }
-        
+
+        bool CarIn = false;
+        List<int> distances = new List<int>();
+        private void Distance_IntoParking(string distance)
+        {
+            Buliding_ManagementEntities db = new Buliding_ManagementEntities();
+            ParkingManagement p = new ParkingManagement();
+            int d = int.Parse(distance);
+            if (d < 30)
+            {
+                if (CarIn != true)
+                {
+                    distances.Add(d);
+                    if (distances.Count == 20)
+                    {
+                        CarIn = true;
+                        DateTime today = DateTime.Now;
+                        p.RID = "3";
+                        p.ParkingNum = 5;
+                        p.LicensePlate = "test";
+                        p.StaffID = "P02";
+                        p.EnterTime = DateTime.Now;
+                        db.ParkingManagement.Add(p);
+                        db.SaveChanges();
+                    }
+                }
+
+            }
+            else
+            {
+                distances.Clear();
+            }
+
+            if (d > 30 && CarIn)
+            {
+                CarIn = false;
+                var q= db.ParkingManagement.Where(n => n.RID == "3").First();
+
+                q.QuitTime = DateTime.Now;
+
+                db.SaveChanges();
+            }
+        }
+
         List<float> tempList = new List<float>();
         private void temp_IoTAlert()
         {//溫度警報
