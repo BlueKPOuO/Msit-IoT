@@ -240,8 +240,8 @@ namespace ControlLibrary
                 tempList.RemoveAt(0);
                 for (int i = 0; i < tempList.Count; i++)
                 {
-                    if (tempList[i] > 50)
-                        continue;//是否3筆都大於50度
+                    if (tempList[i] >= 33)
+                        continue;//是否3筆都大於35度
                     else
                         return;
                 }
