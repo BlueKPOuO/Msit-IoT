@@ -168,6 +168,8 @@ namespace ControlLibrary
             }
         }
 
+        int count = 1;
+        string pID = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
         bool CarIn = false;
         List<int> distances = new List<int>();
         private void Distance_IntoParking(string distance)
@@ -180,11 +182,12 @@ namespace ControlLibrary
                 if (CarIn != true)
                 {
                     distances.Add(d);
-                    if (distances.Count == 20)
+                    if (distances.Count == 3)
                     {
+                        pID = pID.Substring(0,8) + count.ToString();
                         CarIn = true;
                         DateTime today = DateTime.Now;
-                        p.RID = "3";
+                        p.RID = pID;
                         p.ParkingNum = 5;
                         p.LicensePlate = "test";
                         p.StaffID = "P02";
@@ -203,12 +206,29 @@ namespace ControlLibrary
             if (d > 30 && CarIn)
             {
                 CarIn = false;
-                var q= db.ParkingManagement.Where(n => n.RID == "3").First();
+                var q= db.ParkingManagement.Where(n => n.RID == pID).First();
 
                 q.QuitTime = DateTime.Now;
-
+                 q.ParkingFee = ParkingFee(q.QuitTime, q.EnterTime);
+                count++;
                 db.SaveChanges();
             }
+        }
+
+        private int ParkingFee(DateTime? quitTime, DateTime enterTime)
+        {
+            if (quitTime != null)
+            {
+                TimeSpan s = (DateTime)quitTime - enterTime;
+                if (s.Seconds/3600 == 1)
+                    return 20;
+                else
+                {
+                    int TimeUnit = s.Seconds / 1800 + 1;
+                    return TimeUnit * 10;
+                }
+            }
+            return 0;
         }
 
         List<float> tempList = new List<float>();
@@ -220,8 +240,8 @@ namespace ControlLibrary
                 tempList.RemoveAt(0);
                 for (int i = 0; i < tempList.Count; i++)
                 {
-                    if (tempList[i] > 50)
-                        continue;//是否3筆都大於50度
+                    if (tempList[i] >= 33)
+                        continue;//是否3筆都大於35度
                     else
                         return;
                 }
